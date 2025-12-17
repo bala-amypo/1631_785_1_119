@@ -1,1 +1,4 @@
-package com.example.demo.e
+package com.example.demo.model;
+public class Stock{
+
+}
