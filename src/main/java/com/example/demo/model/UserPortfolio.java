@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class UserPortfolio{
@@ -13,6 +14,7 @@ public class UserPortfolio{
 
     private Long id;
     private Long userId;
+    @NotBlank
     private String portfolioName;
     private Timestamp createdAt;
     private Timestamp updatedAt;
