@@ -13,5 +13,13 @@ public class UserPortfolioServiceImpl implements UserPortfolioService{
     public UserPortfolio createPortfolio(UserPortfolio portfolio){
         return port_folio.save(portfolio);
     }
+    @Override
+   public UserPortfolio updatePortfolio(int id,StudentEntity entity){
+        if(student.existsById(id)){
+            entity.setId(id);
+            return student.save(entity);
+        }
+        return null;
+   }
 
 }
