@@ -1,4 +1,5 @@
 package com.example.demo.controller;
+import java.util.List;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,8 +26,8 @@ public class UserPortfolioController
     public UserPortfolio get_PortfolioById(@PathVariable Long id){
         return ser.getPortfolioById(id);
     }
-    @GetMapping("/get_userid1/user/{userId}")
-    public UserPortfolio get_PortfoliosByUser(@PathVariable Long userId){
+    @GetMapping("/get1/user/{userId}")
+    public List<UserPortfolio> get_PortfoliosByUser(@PathVariable Long userId){
         return ser.getPortfoliosByUser(userId);
     }
 }

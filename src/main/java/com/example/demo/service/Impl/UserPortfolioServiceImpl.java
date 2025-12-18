@@ -1,7 +1,7 @@
 package com.example.demo.service.Impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import java.util.List;
 import com.example.demo.model.UserPortfolio;
 import com.example.demo.service.UserPortfolioService;
 import com.example.demo.repository.UserPortfolioRepository;
@@ -33,8 +33,8 @@ public class UserPortfolioServiceImpl implements UserPortfolioService{
 
    }
     @Override
-   public UserPortfolio getPortfoliosByUser(Long userId){
-        return port_folio.findById(userId).orElse(null);
+   public List<UserPortfolio> getPortfoliosByUser(Long userId){
+        return port_folio.findAll();
 
    }
 
