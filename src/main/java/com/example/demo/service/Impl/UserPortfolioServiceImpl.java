@@ -14,10 +14,10 @@ public class UserPortfolioServiceImpl implements UserPortfolioService{
         return port_folio.save(portfolio);
     }
     @Override
-   public UserPortfolio updatePortfolio(int id,StudentEntity entity){
-        if(student.existsById(id)){
-            entity.setId(id);
-            return student.save(entity);
+   public UserPortfolio updatePortfolio(Long id,UserPortfolio portfolio){
+        if(port_folio.existsById(id)){
+            model.setId(id);
+            return port_folio.save(model);
         }
         return null;
    }
