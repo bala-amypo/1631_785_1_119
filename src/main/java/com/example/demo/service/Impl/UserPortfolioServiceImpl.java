@@ -16,8 +16,8 @@ public class UserPortfolioServiceImpl implements UserPortfolioService{
     @Override
    public UserPortfolio updatePortfolio(Long id,UserPortfolio portfolio){
         if(port_folio.existsById(id)){
-            model.setId(id);
-            return port_folio.save(model);
+            portfolio.setId(id);
+            return port_folio.save(portfolio);
         }
         return null;
    }
