@@ -2,6 +2,7 @@ package com.example.demo.controller;
 import java.util.List;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,4 +31,10 @@ public class UserPortfolioController
     public List<UserPortfolio> get_PortfoliosByUser(){
         return ser.getPortfoliosByUser();
     }
+    @DeleteMapping("/delete1/{id}")
+    public String deactivate_Portfolio(@PathVariable int id){
+        return ser.deactivatePortfolio(id);
+
+    }
+
 }
