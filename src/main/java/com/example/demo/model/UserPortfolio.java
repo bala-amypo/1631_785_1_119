@@ -55,7 +55,7 @@ public class UserPortfolio{
     public void setAction(boolean action) {
         this.action = action;
     }
-    public UserPortfolio(Long id, Long userId, String portfolioName, Timestamp createdAt, Timestamp updatedAt,
+    public UserPortfolio(Long id, Long userId,@NotBlank String portfolioName, Timestamp createdAt, Timestamp updatedAt,
             boolean action) {
         this.id = id;
         this.userId = userId;
