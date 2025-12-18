@@ -16,9 +16,9 @@ public class UserPortfolioController
     public UserPortfolio createPortfolio(@RequestBody UserPortfolio portfolio){
         return ser.createPortfolio(portfolio);
     }
-    @PutMapping("/Put!/{id}")
-    public UserPortfolio updatePortfolio(@PathVariable int id,@RequestBody UserPortfolio model){
-        return ser.update(id,model);
+    @PutMapping("/Put1/{id}")
+    public UserPortfolio updatePortfolio(@PathVariable Long id,@RequestBody UserPortfolio model){
+        return ser.updatePortfolio(id,model);
     }
 
 }
