@@ -32,7 +32,7 @@ public class UserPortfolioController
         return ser.getPortfoliosByUser();
     }
     @DeleteMapping("/delete1/{id}")
-    public String deactivate_Portfolio(@PathVariable int id){
+    public String deactivate_Portfolio(@PathVariable Long id){
         return ser.deactivatePortfolio(id);
 
     }
