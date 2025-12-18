@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import java.sql.Timestamp;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;

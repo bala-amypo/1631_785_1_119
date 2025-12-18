@@ -1,14 +1,14 @@
 package com.example.demo.model;
-import jakarta.presistence.Entity;
-import jakarta.presistence.Id;
-import jakarta.presistence.GeneratedValue;
-import jakarta.presistence.GenerationType;
+// import jakarta.presistence.Entity;
+// import jakarta.presistence.Id;
+// import jakarta.presistence.GeneratedValue;
+// import jakarta.presistence.GenerationType;
 
 
-@Entity
+// @Entity
 public class Stock{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // @Id
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     
 
 }
