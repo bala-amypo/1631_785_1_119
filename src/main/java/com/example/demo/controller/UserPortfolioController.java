@@ -18,7 +18,7 @@ public class UserPortfolioController
     }
     @PutMapping("/Put1/{id}")
     public UserPortfolio updatePortfolio(@PathVariable Long id,@RequestBody UserPortfolio model){
-        return ser.updatePortfolio(id,portfolio);
+        return ser.updatePortfolio(id,model);
     }
 
 }
