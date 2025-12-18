@@ -21,12 +21,7 @@ public class UserPortfolioServiceImpl implements UserPortfolioService{
         }
         return null;
    }
-    // @Override
-    // public String DeleteData(int id){
-    //     student.deleteById(id);
-    //     return "delete successfully";
-
-    // }
+    
    @Override
    public UserPortfolio getPortfolioById(Long id){
         return port_folio.findById(id).orElse(null);
@@ -37,6 +32,12 @@ public class UserPortfolioServiceImpl implements UserPortfolioService{
         return port_folio.findAll();
 
    }
+   @Override
+    public String deactivatePortfolio(Long id){
+        port_folio.deleteById(id);
+        return "delete successfully";
+
+    }
 
 
 }
