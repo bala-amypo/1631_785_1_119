@@ -18,12 +18,15 @@ public class UserPortfolioController
         return ser.createPortfolio(portfolio);
     }
     @PutMapping("/Put1/{id}")
-    public UserPortfolio updatePortfolio(@PathVariable Long id,@RequestBody UserPortfolio model){
+    public UserPortfolio update_Portfolio(@PathVariable Long id,@RequestBody UserPortfolio model){
         return ser.updatePortfolio(id,model);
     }
     @GetMapping("/getid1/{id}")
-    public UserPortfolio getidval(@PathVariable int id){
-        return ser.getData(id);
+    public UserPortfolio get_PortfolioById(@PathVariable Long id){
+        return ser.getPortfolioById(id);
     }
-
+    @GetMapping("/get_userid1/{id}")
+    public UserPortfolio get_PortfolioById(@PathVariable Long userId){
+        return ser.getPortfolioById(id);
+    }
 }
