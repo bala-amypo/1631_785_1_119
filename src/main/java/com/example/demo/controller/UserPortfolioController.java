@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +14,16 @@ public class UserPortfolioController
 {
     @Autowired UserPortfolioService ser;
     @PostMapping("/Post1")
-    public UserPortfolio createPortfolio(@RequestBody UserPortfolio portfolio){
+    public UserPortfolio create_Portfolio(@RequestBody UserPortfolio portfolio){
         return ser.createPortfolio(portfolio);
     }
     @PutMapping("/Put1/{id}")
     public UserPortfolio updatePortfolio(@PathVariable Long id,@RequestBody UserPortfolio model){
         return ser.updatePortfolio(id,model);
+    }
+    @GetMapping("/getid1/{id}")
+    public UserPortfolio getidval(@PathVariable int id){
+        return ser.getData(id);
     }
 
 }
