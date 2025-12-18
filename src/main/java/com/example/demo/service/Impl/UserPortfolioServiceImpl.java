@@ -8,7 +8,10 @@ import com.example.demo.repository.UserPortfolioRepository;
 
 @Service
 public class UserPortfolioServiceImpl implements UserPortfolioService{
-    @Autowired UserPortfolioRepository ;
+    @Autowired UserPortfolioRepository port_folio;
     @Override
+    public UserPortfolio createPortfolio(UserPortfolio portfolio){
+        return port_folio.
+    }
 
 }
