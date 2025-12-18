@@ -11,7 +11,7 @@ public class UserPortfolioServiceImpl implements UserPortfolioService{
     @Autowired UserPortfolioRepository port_folio;
     @Override
     public UserPortfolio createPortfolio(UserPortfolio portfolio){
-        return port_folio.
+        return port_folio.save(portfolio);
     }
 
 }
