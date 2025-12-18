@@ -8,9 +8,10 @@ import com.example.demo.model.UserPortfolio;
 import com.example.demo.service.UserPortfolioService;
 
 @RestController
-public class UserPortfolioController{
+public class UserPortfolioController
+{
     @Autowired UserPortfolioService ser;
-    @PostMapping("/post")
+    @PostMapping("/poster")
     public UserPortfolio createPortfolio(@RequestBody UserPortfolio portfolio){
         return ser.createPortfolio(portfolio);
     }
