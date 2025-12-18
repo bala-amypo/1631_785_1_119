@@ -1,5 +1,5 @@
-package com.example.demo.model;
+// package com.example.demo.model;
 
-public class RiskThreshold{
+// public class RiskThreshold{
     
-}
+// }

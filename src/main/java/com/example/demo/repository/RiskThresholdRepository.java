@@ -1,4 +1,4 @@
-package com.example.demo.repository;
-public interface RiskThresholdRepository{
+// package com.example.demo.repository;
+// public interface RiskThresholdRepository{
     
-}
+// }
