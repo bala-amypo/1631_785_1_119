@@ -29,12 +29,12 @@ public class UserPortfolioServiceImpl implements UserPortfolioService{
     // }
    @Override
    public UserPortfolio getPortfolioById(Long id){
-        return port_folio.findById(id);
+        return port_folio.findById(id).orElse(null);
 
    }
     @Override
    public UserPortfolio getPortfoliosByUser(Long userId){
-        return port_folio.findById(id);
+        return port_folio.findById(userId).orElse(null);
 
    }
 
