@@ -26,7 +26,7 @@ public class UserPortfolioController
         return ser.getPortfolioById(id);
     }
     @GetMapping("/get_userid1/{id}")
-    public UserPortfolio get_PortfolioById(@PathVariable Long userId){
-        return ser.getPortfolioById(id);
+    public UserPortfolio get_PortfoliosByUser(@PathVariable Long userId){
+        return ser.getPortfoliosByUser(id);
     }
 }

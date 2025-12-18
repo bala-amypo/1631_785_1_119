@@ -29,7 +29,7 @@ public class UserPortfolioServiceImpl implements UserPortfolioService{
     // }
    @Override
    public UserPortfolio getPortfolioById(Long id){
-        return port_folio.orElse(null);
+        return port_folio;
 
    }
     @Override
