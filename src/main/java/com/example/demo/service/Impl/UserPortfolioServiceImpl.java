@@ -33,7 +33,7 @@ public class UserPortfolioServiceImpl implements UserPortfolioService{
 
    }
     @Override
-   public List<UserPortfolio> getPortfoliosByUser(Long userId){
+   public List<UserPortfolio>getPortfoliosByUser(Long userId){
         return port_folio.findAll();
 
    }
