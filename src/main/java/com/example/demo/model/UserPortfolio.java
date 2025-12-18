@@ -14,7 +14,7 @@ public class UserPortfolio{
 
     private Long id;
     private Long userId;
-    @NotBlank
+    @NotBlank(message="Portfolio name must not be blank")
     private String portfolioName;
     private Timestamp createdAt;
     private Timestamp updatedAt;
