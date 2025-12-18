@@ -21,5 +21,22 @@ public class UserPortfolioServiceImpl implements UserPortfolioService{
         }
         return null;
    }
+    // @Override
+    // public String DeleteData(int id){
+    //     student.deleteById(id);
+    //     return "delete successfully";
+
+    // }
+   @Override
+   public UserPortfolio getPortfolioById(Long id){
+        return port_folio.orElse(null);
+
+   }
+    @Override
+   public UserPortfolio getPortfoliosByUser(Long userId){
+        return port_folio.orElse(null);
+
+   }
+
 
 }

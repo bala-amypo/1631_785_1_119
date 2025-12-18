@@ -4,7 +4,7 @@ public interface UserPortfolioService{
     UserPortfolio createPortfolio(UserPortfolio portfolio);
     UserPortfolio updatePortfolio(Long id,UserPortfolio portfolio);
     UserPortfolio getPortfolioById(Long id);
-    // UserPortfolio getPortfoliosByUser(Long userId);
+    UserPortfolio getPortfoliosByUser(Long userId);
     // String deactivatePortfolio(Long id);
     
     
