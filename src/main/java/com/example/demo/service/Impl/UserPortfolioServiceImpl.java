@@ -5,6 +5,7 @@ import java.util.List;
 import com.example.demo.model.UserPortfolio;
 import com.example.demo.service.UserPortfolioService;
 import com.example.demo.repository.UserPortfolioRepository;
+import com.example.demo.exception.ResourceNotFoundException;
 
 @Service
 public class UserPortfolioServiceImpl implements UserPortfolioService{
@@ -24,7 +25,7 @@ public class UserPortfolioServiceImpl implements UserPortfolioService{
     
    @Override
    public UserPortfolio getPortfolioById(Long id){
-        return port_folio.findById(id).orElseThrow(()->new ResourceNotFoundException("Not found"));
+        return port_folio.findById(id).orElseThrow(()->new ResourceNotFoundException(" Portfolio Not found"));
 
    }
     @Override
