@@ -21,16 +21,16 @@ public class RiskThresholdController
         return ser.createThreshold(threshold);
     }
     @PutMapping("/Put_RiskThreshold/{id}")
-    public RiskThreshold update_Stock(@PathVariable Long id,@RequestBody RiskThreshold model){
-        return ser.updateStock(id,model);
+    public RiskThreshold update_Threshold(@PathVariable Long id,@RequestBody RiskThreshold model){
+        return ser.updateThreshold(id,model);
     }
     @GetMapping("/getid_RiskThreshold/{id}")
-    public RiskThreshold get_StockById(@PathVariable Long id){
-        return ser.getStockById(id);
+    public RiskThreshold get_ThresholdById(@PathVariable Long id){
+        return ser.getThresholdById(id);
     }
     @GetMapping("/getall_RiskThreshold")
-    public List<RiskThreshold> get_AllStocks(){
-        return ser.getAllStocks();
+    public List<RiskThreshold>get_AllThresholds(){
+        return ser.getAllThresholds();
     }
     
 
