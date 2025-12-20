@@ -1,5 +1,4 @@
 package com.example.demo.model;
-
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import jakarta.persistence.Entity;
@@ -11,17 +10,15 @@ import jakarta.validation.constraints.Column;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
-
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
-
 public class UserPortfolio{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-
     private Long id;
     private Long userId;
     @NotBlank(message="Portfolio name must not be blank")
@@ -30,6 +27,17 @@ public class UserPortfolio{
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private boolean action;
-     
-
+    @PrePersist
+    public void Oncreate(){
+        LocalDateTime now= LocalDateTime.now();
+        if(this.createdAt==null){
+        this.createdAt=now;
+        }
+        this.updatedAt=now;
+    }
+    @PreUpdate
+    public void Onupdate(){
+        LocalDateTime now= LocalDateTime.now();
+        this.updatedAt=now;
+    }
 }
