@@ -19,9 +19,9 @@ public class RiskThreshold{
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     @Column(name = "thresholdName",unique = true)
-    private String ticker;
-    private String companyName;
-    private String sector;
-    private boolean isActive;
+    private String thresholdName;
+    private Double maxSingleStockPercentage;
+    private Double maxSectorPercentage;
+    private boolean active;
 
 }
