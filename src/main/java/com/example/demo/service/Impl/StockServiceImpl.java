@@ -5,6 +5,7 @@ import java.util.List;
 import com.example.demo.model.Stock;
 import com.example.demo.service.StockService;
 import com.example.demo.repository.StockRepository;
+import com.example.demo.exception.ResourceNotFoundException;
 
 @Service
 public class StockServiceImpl implements StockService{
