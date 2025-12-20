@@ -24,7 +24,7 @@ public class StockServiceImpl implements StockService{
     
    @Override
    public Stock getStockById(Long id){
-        return stocks.findById(id).orElse(null);
+        return stocks.findById(id).orElseThrow(()->new ValidationException("Du));
 
    }
     @Override
