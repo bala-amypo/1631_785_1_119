@@ -22,6 +22,7 @@ public class RiskThreshold{
     private String thresholdName;
     private Double maxSingleStockPercentage;
     private Double maxSectorPercentage;
+    // private Double maxOverallVolatility;
     private boolean active;
 
 }
