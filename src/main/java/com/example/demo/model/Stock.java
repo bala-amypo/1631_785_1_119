@@ -1,9 +1,13 @@
-// package com.example.demo.model;
-// // import jakarta.presistence.Entity;
-// // import jakarta.presistence.Id;
-// // import jakarta.presistence.GeneratedValue;
-// // import jakarta.presistence.GenerationType;
+package com.example.demo.model;
+import jakarta.persistence.Entity;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 
 // // @Entity
 // public class Stock{
