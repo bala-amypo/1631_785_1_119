@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.RiskThreshold;
-import com.example.demo.service`1u.RiskThresholdService;
+import com.example.demo.service.RiskThresholdService;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
