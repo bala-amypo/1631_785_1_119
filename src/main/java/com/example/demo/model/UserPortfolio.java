@@ -13,10 +13,13 @@ import lombok.AllArgsConstructor;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Column;
 import jakarta.persistence.PreUpdate;
+
+
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class UserPortfolio{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -26,9 +29,11 @@ public class UserPortfolio{
     @NotBlank(message="Portfolio name must not be blank")
     @Column(name = "portfolioName",unique = true)
     private String portfolioName;
+
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private boolean action;
+
     @PrePersist
     public void Oncreate(){
         LocalDateTime now= LocalDateTime.now();
