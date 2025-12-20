@@ -5,7 +5,7 @@ import com.example.demo.model.RiskThreshold;
 public interface RiskThresholdService{
     RiskThreshold createThreshold(RiskThreshold threshold);
     RiskThreshold updateThreshold(Long id,RiskThreshold threshold);
-    RiskThreshold getActiveThreshold();
+    List<RiskThreshold> getActiveThreshold();
     RiskThreshold getThresholdById(Long id);
     List<RiskThreshold>getAllThresholds();
     

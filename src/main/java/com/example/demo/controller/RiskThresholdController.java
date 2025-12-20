@@ -24,7 +24,7 @@ public class RiskThresholdController
         return ser.updateThreshold(id,model);
     }
     @GetMapping("/active")
-    public RiskThreshold get_ActiveThreshold(){
+    public List<RiskThreshold> get_ActiveThreshold(){
         return ser.getActiveThreshold();
     }
     @GetMapping("/getid_RiskThreshold/{id}")

@@ -23,7 +23,7 @@ public class RiskThresholdServiceImpl implements RiskThresholdService{
         return null;
    }
     @Override
-    public RiskThreshold getActiveThreshold(){
+    public List<RiskThreshold> getActiveThreshold(){
         return thresholds.findByActiveTrue().orElseThrow(()->new ResourceNotFoundException("Portfolio Not found"));
     }
    @Override
