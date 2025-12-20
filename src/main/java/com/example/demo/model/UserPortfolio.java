@@ -23,9 +23,10 @@ public class UserPortfolio{
     private Long id;
     private Long userId;
     @NotBlank(message="Portfolio name must not be blank")
+    @Column(name="portfolioName",)
     private String portfolioName;
-    private Timestamp createdAt;
-    private Timestamp updatedAt;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
     private boolean action;
      
 
