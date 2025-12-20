@@ -16,26 +16,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class RiskThresholdController
 {
     @Autowired RiskThresholdService ser;
-    @PostMapping("/Post_Stock")
-    public RiskThreshold create_Stock(@RequestBody Stock stock){
+    @PostMapping("/Post_RiskThreshold")
+    public RiskThreshold create_Stock(@RequestBody RiskThreshold stock){
         return ser.createStock(stock);
     }
-    @PutMapping("/Put_stock/{id}")
-    public Stock update_Stock(@PathVariable Long id,@RequestBody Stock model){
+    @PutMapping("/Put_RiskThreshold/{id}")
+    public RiskThreshold update_Stock(@PathVariable Long id,@RequestBody RiskThreshold model){
         return ser.updateStock(id,model);
     }
-    @GetMapping("/getid_Stock/{id}")
-    public Stock get_StockById(@PathVariable Long id){
+    @GetMapping("/getid_RiskThreshold/{id}")
+    public RiskThreshold get_StockById(@PathVariable Long id){
         return ser.getStockById(id);
     }
-    @GetMapping("/getall_Stock/user/{userId}")
-    public List<Stock> get_AllStocks(){
+    @GetMapping("/getall_RiskThresholdk/user/{userId}")
+    public List<RiskThreshold> get_AllStocks(){
         return ser.getAllStocks();
     }
-    @DeleteMapping("/deleteStock/{id}")
-    public String deactivate_Stock(@PathVariable Long id){
-        return ser.deactivateStock(id);
-
-    }
+    
 
 }

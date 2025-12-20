@@ -27,7 +27,7 @@ public class StockController
     public Stock get_StockById(@PathVariable Long id){
         return ser.getStockById(id);
     }
-    @GetMapping("/getall_Stock/user/{userId}")
+    @GetMapping("/getall_Stock")
     public List<Stock> get_AllStocks(){
         return ser.getAllStocks();
     }
