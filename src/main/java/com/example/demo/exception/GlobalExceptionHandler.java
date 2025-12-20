@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 @RestControllerAdvice
 public class GlobalExceptionHandler{
 
-    @ExceptionHandler(ResourceNotFound.class)
+    @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<String> handleResourceNotFoundException(ResourceNotFoundException ex){
         return new ResponseEntity<String>(ex.getMessage(),HttpStatus.BAD_GATEWAY);
 
