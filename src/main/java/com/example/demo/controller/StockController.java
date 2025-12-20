@@ -23,7 +23,7 @@ public class StockController
     public Stock update_Stock(@PathVariable Long id,@RequestBody Stock model){
         return ser.updateStock(id,model);
     }
-    @GetMapping("/get_Stock/{id}")
+    @GetMapping("/getid_Stock/{id}")
     public Stock get_StockById(@PathVariable Long id){
         return ser.getStockById(id);
     }

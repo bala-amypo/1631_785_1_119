@@ -15,23 +15,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class UserPortfolioController
 {
     @Autowired UserPortfolioService ser;
-    @PostMapping("/Post1")
+    @PostMapping("/Post_UserPortfolio")
     public UserPortfolio create_Portfolio(@RequestBody UserPortfolio portfolio){
         return ser.createPortfolio(portfolio);
     }
-    @PutMapping("/Put1/{id}")
+    @PutMapping("/Put_UserPortfolio_/{id}")
     public UserPortfolio update_Portfolio(@PathVariable Long id,@RequestBody UserPortfolio model){
         return ser.updatePortfolio(id,model);
     }
-    @GetMapping("/getid1/{id}")
+    @GetMapping("/getid_UserPortfolio/{id}")
     public UserPortfolio get_PortfolioById(@PathVariable Long id){
         return ser.getPortfolioById(id);
     }
-    @GetMapping("/get1/user/{userId}")
+    @GetMapping("/getall_UserPortfolio/user/{userId}")
     public List<UserPortfolio> get_PortfoliosByUser(){
         return ser.getPortfoliosByUser();
     }
-    @DeleteMapping("/delete1/{id}")
+    @DeleteMapping("/delete_UserPortfolio/{id}")
     public String deactivate_Portfolio(@PathVariable Long id){
         return ser.deactivatePortfolio(id);
 
