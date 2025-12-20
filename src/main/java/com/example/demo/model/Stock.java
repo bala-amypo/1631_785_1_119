@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
 
 @Entity
 @Data
@@ -17,6 +18,10 @@ public class Stock{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-    private String U
+    @Column(name = "ticker",unique = true)
+    private String ticker;
+    private String companyName;
+    private String sector;
+    private boolean active;
 
 }
