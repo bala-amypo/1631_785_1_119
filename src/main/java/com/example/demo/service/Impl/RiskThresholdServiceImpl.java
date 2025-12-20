@@ -22,7 +22,10 @@ public class RiskThresholdServiceImpl implements RiskThresholdService{
         }
         return null;
    }
-    
+    @Override
+    public RiskThreshold getActiveThreshold(){
+        return thresholds.findBy
+    }
    @Override
    public RiskThreshold getThresholdById(Long id){
         return thresholds.findById(id).orElseThrow(()->new ResourceNotFoundException("Stock Not found"));
