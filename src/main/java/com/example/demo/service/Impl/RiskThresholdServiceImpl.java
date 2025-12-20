@@ -1,4 +1,44 @@
-// package com.example.demo.service.Impl;
-// public class RiskThresholdServiceImpl implements RiskThresholdService {
+package com.example.demo.service.Impl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.List;
+import com.example.demo.model.RiskThreshold;
+import com.example.demo.service.RiskThresholdService;
+import com.example.demo.repository.RiskThresholdRepository;
+import com.example.demo.exception.ResourceNotFoundException;
+
+@Service
+public class RiskThresholdServiceImpl implements RiskThresholdService{
+    @Autowired RiskThresholdRepository stocks;
+    @Override
+    public RiskThreshold createStock(RiskThreshold stock){
+        return stocks.save(stock);
+    }
+    @Override
+   public Stock updateStock(Long id,Stock stock){
+        if(stocks.existsById(id)){
+            stock.setId(id);
+            return stocks.save(stock);
+        }
+        return null;
+   }
     
-// }
+   @Override
+   public Stock getStockById(Long id){
+        return stocks.findById(id).orElseThrow(()->new ResourceNotFoundException("Stock Not found"));
+
+   }
+    @Override
+   public List<Stock>getAllStocks(){
+        return stocks.findAll();
+
+   }
+   @Override
+    public String deactivateStock(Long id){
+        stocks.deleteById(id);
+        return "delete successfully";
+
+    }
+
+
+}
