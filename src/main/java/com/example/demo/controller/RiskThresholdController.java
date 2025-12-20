@@ -17,8 +17,8 @@ public class RiskThresholdController
 {
     @Autowired RiskThresholdService ser;
     @PostMapping("/Post_RiskThreshold")
-    public RiskThreshold create_Stock(@RequestBody RiskThreshold stock){
-        return ser.createStock(stock);
+    public RiskThreshold create_Threshold(@RequestBody RiskThreshold threshold){
+        return ser.createThreshold(threshold);
     }
     @PutMapping("/Put_RiskThreshold/{id}")
     public RiskThreshold update_Stock(@PathVariable Long id,@RequestBody RiskThreshold model){
@@ -28,7 +28,7 @@ public class RiskThresholdController
     public RiskThreshold get_StockById(@PathVariable Long id){
         return ser.getStockById(id);
     }
-    @GetMapping("/getall_RiskThresholdk/user/{userId}")
+    @GetMapping("/getall_RiskThreshold")
     public List<RiskThreshold> get_AllStocks(){
         return ser.getAllStocks();
     }
