@@ -23,9 +23,9 @@ public class RiskThresholdController
     public RiskThreshold update_Threshold(@PathVariable Long id,@RequestBody RiskThreshold model){
         return ser.updateThreshold(id,model);
     }
-    @GetMapping("/get_active")
+    @GetMapping("/active")
     public RiskThreshold get_ActiveThreshold(){
-        return ser.public RiskThreshold0 getActiveThreshold()
+        return ser.getActiveThreshold();
     }
     @GetMapping("/getid_RiskThreshold/{id}")
     public RiskThreshold get_ThresholdById(@PathVariable Long id){
