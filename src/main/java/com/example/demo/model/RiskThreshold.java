@@ -1,5 +1,27 @@
-// package com.example.demo.model;
+package com.example.demo.model;
+import jakarta.persistence.Entity;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
 
-// public class RiskThreshold{
-    
-// }
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+
+
+public class RiskThreshold{
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long id;
+    @Column(name = "thresholdName",unique = true)
+    private String ticker;
+    private String companyName;
+    private String sector;
+    private boolean isActive;
+
+}
