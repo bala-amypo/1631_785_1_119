@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.model.RiskThreshold;
 @Repository
 public interface RiskThresholdRepository extends JpaRepository<RiskThreshold,Long>{
-
+       RiskThreshold findByActiveTrue();
 }
