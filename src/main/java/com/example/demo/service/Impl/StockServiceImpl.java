@@ -28,13 +28,13 @@ public class StockServiceImpl implements StockService{
 
    }
     @Override
-   public List<UserPortfolio>getPortfoliosByUser(){
-        return port_folio.findAll();
+   public List<Stock>getAllStocks(){
+        return stocks.findAll();
 
    }
    @Override
-    public String deactivatePortfolio(Long id){
-        port_folio.deleteById(id);
+    public String deactivateStock(Long id){
+        stocks.deleteById(id);
         return "delete successfully";
 
     }
