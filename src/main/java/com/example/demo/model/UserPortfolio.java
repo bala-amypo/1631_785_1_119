@@ -1,5 +1,5 @@
 package com.example.demo.model;
-import java.sql.Timestamp;
+
 import java.time.LocalDateTime;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -11,6 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import jakarta.persistence.PrePersist;
+import jakarta.persistence.Column;
 import jakarta.persistence.PreUpdate;
 @Entity
 @Data
@@ -21,8 +22,9 @@ public class UserPortfolio{
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private Long userId;
+
     @NotBlank(message="Portfolio name must not be blank")
-    @Column(name="portfolioName",unique=true)
+    @Column(name = "portfolioName",unique = true)
     private String portfolioName;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
