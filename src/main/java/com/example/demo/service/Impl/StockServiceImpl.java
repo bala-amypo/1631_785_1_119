@@ -2,16 +2,16 @@ package com.example.demo.service.Impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import com.example.demo.model.UserPortfolio;
-import com.example.demo.service.UserPortfolioService;
-import com.example.demo.repository.UserPortfolioRepository;
+import com.example.demo.model.Stock;
+import com.example.demo.service.StockService;
+import com.example.demo.repository.StockRepository;
 
 @Service
-public class UserPortfolioServiceImpl implements UserPortfolioService{
-    @Autowired UserPortfolioRepository port_folio;
+public class StockServiceImpl implements StockService{
+    @Autowired StockRepository stocks;
     @Override
-    public UserPortfolio createPortfolio(UserPortfolio portfolio){
-        return port_folio.save(portfolio);
+    public Stock createStock(Stock stock){
+        return stocks.save(stock);
     }
     @Override
    public UserPortfolio updatePortfolio(Long id,UserPortfolio portfolio){
