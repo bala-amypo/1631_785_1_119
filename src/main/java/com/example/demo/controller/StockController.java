@@ -8,20 +8,20 @@
 // import org.springframework.beans.factory.annotation.Autowired;
 // import org.springframework.web.bind.annotation.RestController;
 // import com.example.demo.model.Stock;
-// import com.example.demo.service.UserPortfolioService;
+// import com.example.demo.service.StockService;
 // import org.springframework.web.bind.annotation.PathVariable;
 
 // @RestController
-// public class UserPortfolioController
+// public class StockController
 // {
-//     @Autowired UserPortfolioService ser;
-//     @PostMapping("/Post1")
-//     public UserPortfolio create_Portfolio(@RequestBody UserPortfolio portfolio){
-//         return ser.createPortfolio(portfolio);
+//     @Autowired StockService ser;
+//     @PostMapping("/Post_Stock")
+//     public Stock create_Portfolio(@RequestBody Stock stock){
+//         return ser.createStock(stock);
 //     }
-//     @PutMapping("/Put1/{id}")
-//     public UserPortfolio update_Portfolio(@PathVariable Long id,@RequestBody UserPortfolio model){
-//         return ser.updatePortfolio(id,model);
+//     @PutMapping("/Put_stock/{id}")
+//     public Stock update_Portfolio(@PathVariable Long id,@RequestBody Stock model){
+//         return ser.updateStock(id,model);
 //     }
 //     @GetMapping("/getid1/{id}")
 //     public UserPortfolio get_PortfolioById(@PathVariable Long id){
