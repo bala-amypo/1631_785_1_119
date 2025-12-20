@@ -9,36 +9,30 @@ import com.example.demo.exception.ResourceNotFoundException;
 
 @Service
 public class RiskThresholdServiceImpl implements RiskThresholdService{
-    @Autowired RiskThresholdRepository stocks;
+    @Autowired RiskThresholdRepository thresholds;
     @Override
-    public RiskThreshold createStock(RiskThreshold stock){
-        return stocks.save(stock);
+    public RiskThreshold createThreshold(RiskThreshold threshold){
+        return thresholds.save(threshold);
     }
     @Override
-   public Stock updateStock(Long id,Stock stock){
-        if(stocks.existsById(id)){
-            stock.setId(id);
-            return stocks.save(stock);
+   public RiskThreshold updateThreshold(Long id,RiskThreshold threshold){
+        if(thresholds.existsById(id)){
+            threshold.setId(id);
+            return thresholds.save(threshold);
         }
         return null;
    }
     
    @Override
-   public Stock getStockById(Long id){
-        return stocks.findById(id).orElseThrow(()->new ResourceNotFoundException("Stock Not found"));
+   public RiskThreshold getThresholdById(Long id){
+        return thresholds.findById(id).orElseThrow(()->new ResourceNotFoundException("Stock Not found"));
 
    }
     @Override
-   public List<Stock>getAllStocks(){
-        return stocks.findAll();
+   public List<RiskThreshold>getAllThresholds(){
+        return thresholds.findAll();
 
    }
-   @Override
-    public String deactivateStock(Long id){
-        stocks.deleteById(id);
-        return "delete successfully";
-
-    }
 
 
 }
