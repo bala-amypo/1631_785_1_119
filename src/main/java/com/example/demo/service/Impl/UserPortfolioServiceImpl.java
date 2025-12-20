@@ -24,7 +24,7 @@ public class UserPortfolioServiceImpl implements UserPortfolioService{
     
    @Override
    public UserPortfolio getPortfolioById(Long id){
-        return port_folio.findById(id).orElse(null);
+        return port_folio.findById(id).orElseThrow(()->new ResourceNotFoundException("Not found"));
 
    }
     @Override

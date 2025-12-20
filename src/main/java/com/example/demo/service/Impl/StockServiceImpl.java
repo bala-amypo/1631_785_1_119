@@ -25,7 +25,7 @@ public class StockServiceImpl implements StockService{
     
    @Override
    public Stock getStockById(Long id){
-        return stocks.findById(id).orElseThrow(()->new ResourceNotFoundException("Duplicate ticker"));
+        return stocks.findById(id).orElseThrow(()->new ResourceNotFoundException("Not found"));
 
    }
     @Override
