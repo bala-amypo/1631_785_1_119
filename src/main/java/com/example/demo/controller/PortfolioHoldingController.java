@@ -16,26 +16,26 @@ import com.example.demo.service.UserPortfolioService;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
-public class UserPortfolioController
+public class PortfolioHoldingController
 {
     @Autowired UserPortfolioService ser;
-    @PostMapping("/Post_UserPortfolio")
-    public UserPortfolio create_Portfolio(@RequestBody UserPortfolio portfolio){
-        return ser.createPortfolio(portfolio);
+    @PostMapping("/Post_PortfolioHolding")
+    public UserPortfolio create_Holding(@RequestBody UserPortfolio portfolio){
+        return ser.createHolding(portfolio);
     }
-    @PutMapping("/Put_UserPortfolio_/{id}")
-    public UserPortfolio update_Portfolio(@PathVariable Long id,@RequestBody UserPortfolio model){
-        return ser.updatePortfolio(id,model);
+    @PutMapping("/Put_PortfolioHolding/{id}")
+    public UserPortfolio update_Holding(@PathVariable Long id,@RequestBody UserPortfolio model){
+        return ser. updateHolding(id,model);
     }
-    @GetMapping("/getid_UserPortfolio/{id}")
-    public UserPortfolio get_PortfolioById(@PathVariable Long id){
-        return ser.getPortfolioById(id);
+    @GetMapping("/getid_PortfolioHolding/{id}")
+    public UserPortfolio get_HoldingById(@PathVariable Long id){
+        return ser.getHoldingById(id);
     }
-    @GetMapping("/getall_UserPortfolio/user/{userId}")
-    public List<UserPortfolio> get_PortfoliosByUser(){
-        return ser.getPortfoliosByUser();
+    @GetMapping("/getall_PortfolioHolding/portfolio/{portfolioId}")
+    public List<UserPortfolio> get_HoldingsByPortfolio(){
+        return ser.getHoldingsByPortfolio();
     }
-    @DeleteMapping("/delete_UserPortfolio/{id}")
+    @DeleteMapping("/delete_PortfolioHolding/{id}")
     public String deactivate_Portfolio(@PathVariable Long id){
         return ser.deactivatePortfolio(id);
 
