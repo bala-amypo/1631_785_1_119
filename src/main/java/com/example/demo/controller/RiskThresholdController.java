@@ -15,6 +15,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class RiskThresholdController
 {
     @Autowired RiskThresholdService ser;
+     private final RiskThresholdService ser;
+    
+    public RiskThresholdController(RiskThresholdService ser) {
+        this.ser = ser;
+    }
     @PostMapping("/Post_RiskThreshold")
     public RiskThreshold create_Threshold(@RequestBody RiskThreshold threshold){
         return ser.createThreshold(threshold);
