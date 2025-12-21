@@ -1,7 +1,6 @@
 
 package com.example.demo.model;
 
-import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,14 +36,11 @@ public class PortfolioHolding {
     
     @PrePersist
     public void Oncreated() {
-        LocalDateTime last= LocalDateTime.now();
+        
         if(this.lastUpdated == null) {
+            LocalDateTime last= LocalDateTime.now();
             this.lastUpdated = last;
         }
     }
     
-    @PreUpdate
-    public void updateTimestamp() {
-        lastUpdated = new Timestamp(System.currentTimeMillis());
-    }
 }
