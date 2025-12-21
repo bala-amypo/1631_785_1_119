@@ -18,7 +18,7 @@ public class RiskAnalysisResultController
     public RiskAnalysisResultController(RiskAnalysisResultService ser){
         this.ser=ser;
     }
-    @PostMapping("/Post_Analysis/analyze/{}")
+    @PostMapping("/Post_Analysis/analyze/{portfolioId}")
     // public RiskAnalysisResult analyzePortfolio(Long portfolioId){
     //     return ser.createPortfolio(portfolio);
     // }
