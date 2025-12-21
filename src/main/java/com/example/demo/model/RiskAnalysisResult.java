@@ -6,7 +6,8 @@ import lombok.AllArgsConstructor;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import java.sql.Timestamp;
+// import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import jakarta.persistence.ManyToOne;
 
 @Entity
@@ -22,9 +23,9 @@ public class RiskAnalysisResult{
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "department_id")
+    @JoinColumn(name = "portfolio_id")
     private UserPortfolio portfolio;
-    private Timestamp analysis;
+    private LocalDateTime analysis;
     private Double highestStockPercentage;
     private Double highestSectorPercentage;
     private boolean isHighRisk;
