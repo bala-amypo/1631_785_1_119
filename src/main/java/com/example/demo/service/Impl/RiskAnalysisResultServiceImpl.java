@@ -17,29 +17,29 @@ public class RiskAnalysisResultServiceImpl implements RiskAnalysisResultService{
     @Override
     public RiskAnalysisResult analyzePortfolio(RiskAnalysisResult Result){
         return Results.save(Result);
-    }
-    @Override
-   public RiskThreshold updateThreshold(Long id,RiskThreshold threshold){
-        if(thresholds.existsById(id)){
-            threshold.setId(id);
-            return thresholds.save(threshold);
-        }
-        return null;
-   }
-    @Override
-    public List<RiskThreshold> getActiveThreshold(){
-        return thresholds.findByActiveTrue();
-    }
-   @Override
-   public RiskThreshold getThresholdById(Long id){
-        return thresholds.findById(id).orElseThrow(()->new ResourceNotFoundException("Portfolio Not found"));
+//     }
+//     @Override
+//    public RiskThreshold updateThreshold(Long id,RiskThreshold threshold){
+//         if(thresholds.existsById(id)){
+//             threshold.setId(id);
+//             return thresholds.save(threshold);
+//         }
+//         return null;
+//    }
+//     @Override
+//     public List<RiskThreshold> getActiveThreshold(){
+//         return thresholds.findByActiveTrue();
+//     }
+//    @Override
+//    public RiskThreshold getThresholdById(Long id){
+//         return thresholds.findById(id).orElseThrow(()->new ResourceNotFoundException("Portfolio Not found"));
 
-   }
-    @Override
-   public List<RiskThreshold>getAllThresholds(){
-        return thresholds.findAll();
+//    }
+//     @Override
+//    public List<RiskThreshold>getAllThresholds(){
+//         return thresholds.findAll();
 
-   }
+//    }
 
 
 }
