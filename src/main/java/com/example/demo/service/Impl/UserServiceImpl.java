@@ -1,4 +1,5 @@
 package com.example.demo.service.Impl;
+
 import org.springframework.stereotype.Service;
 import com.example.demo.model.User;
 import com.example.demo.service.UserService;
@@ -24,9 +25,11 @@ public class UserServiceImpl implements UserService {
         }
         return userRepository.save(user);
     }
+    
     @Override
     public User findByEmail(String email) {
-        return userRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("User not found"));
+        return userRepository.findByEmail(email)
+            .orElseThrow(() -> new ResourceNotFoundException("User not found"));
     }
     
     @Override
