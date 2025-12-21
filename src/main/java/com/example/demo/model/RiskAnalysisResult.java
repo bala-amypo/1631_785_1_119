@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 // import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
 
 @Entity
 @Data
@@ -30,5 +31,9 @@ public class RiskAnalysisResult{
     private Double highestSectorPercentage;
     private boolean isHighRisk;
     private String notes;
+     @PrePersist
+    public void Oncreate(){
+         LocalDateTime now= LocalDateTime.now();
+    }
 
 }
