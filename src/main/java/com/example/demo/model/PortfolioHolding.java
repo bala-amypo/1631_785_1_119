@@ -7,7 +7,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import java.math.BigDecimal;
-
+import jakarta.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.PreUpdate;
+import jakarta.persistence.PrePersist;
 
 @Entity
 @Data
@@ -31,9 +36,10 @@ public class PortfolioHolding {
     private  LocalDateTime lastUpdated;
     
     @PrePersist
-    public void setTimestamp() {
-        if(lastUpdated == null) {
-            lastUpdated = new Timestamp(System.currentTimeMillis());
+    public void Oncreated() {
+        LocalDateTime last= LocalDateTime.now();
+        if(this.lastUpdated == null) {
+            this.lastUpdated = last;
         }
     }
     
