@@ -29,7 +29,7 @@ public class RiskAnalysisResultController
     }
     @GetMapping("/getall_Analysis/portfolio/{ortfolioId}")
     public List<RiskAnalysisResult>get_AnalysesForPortfolio(@PathVariable Long portfolioId){
-        return ser.getAnalysesForPortfolior(portfolioId);
+        return ser.getAnalysesForPortfolio(portfolioId);
     }
 
 }
