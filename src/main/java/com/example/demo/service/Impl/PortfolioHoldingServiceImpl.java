@@ -11,11 +11,9 @@ import com.example.demo.exception.ResourceNotFoundException;
 public class PortfolioHoldingServiceImpl implements PortfolioHoldingService {
     
     private final PortfolioHoldingRepository holdingRepository;
-    
     public PortfolioHoldingServiceImpl(PortfolioHoldingRepository holdingRepository) {
         this.holdingRepository = holdingRepository;
     }
-    
     @Override
     public PortfolioHolding createHolding(PortfolioHolding holding) {
         if(holding.getQuantity() == null || holding.getQuantity() <= 0) {
