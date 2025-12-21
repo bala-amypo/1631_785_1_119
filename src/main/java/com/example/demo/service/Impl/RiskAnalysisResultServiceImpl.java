@@ -10,9 +10,8 @@ import com.example.demo.exception.ResourceNotFoundException;
 
 @Service
 public class RiskAnalysisResultServiceImpl implements RiskAnalysisResultService{
-    @Autowired RiskAnalysisResultRepository Results;
-     @Autowired
-     private UserPortfolioRepository ;
+    private final RiskAnalysisResultRepository Results;
+    private final UserPortfolioRepository ;
     
     @Override
     public RiskAnalysisResult analyzePortfolio(Long portfolioId){
