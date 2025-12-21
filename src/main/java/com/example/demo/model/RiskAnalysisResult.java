@@ -6,7 +6,9 @@ import lombok.AllArgsConstructor;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.Column;
+
+import java.sql.Timestamp;
+
 
 @Entity
 @Data
@@ -18,8 +20,8 @@ public class RiskAnalysisResult{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "thresholdName",unique = true)
-    private LocalDateTime ana
+    
+    private Time analysis;
     private Double highestStockPercentage;
     private Double highestSectorPercentage;
     private boolean isHighRisk;
