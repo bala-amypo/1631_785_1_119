@@ -10,6 +10,11 @@ import com.example.demo.exception.ResourceNotFoundException;
 @Service
 public class RiskThresholdServiceImpl implements RiskThresholdService{
     @Autowired RiskThresholdRepository thresholds;
+    private final UserPortfolioRepository port_folio;
+    
+    public UserPortfolioServiceImpl(UserPortfolioRepository port_folio) {
+        this.port_folio = port_folio;
+    }
     @Override
     public RiskThreshold createThreshold(RiskThreshold threshold){
         return thresholds.save(threshold);

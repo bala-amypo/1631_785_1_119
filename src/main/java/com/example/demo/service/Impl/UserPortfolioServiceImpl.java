@@ -1,5 +1,5 @@
 package com.example.demo.service.Impl;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 import java.util.List;
 import com.example.demo.model.UserPortfolio;
@@ -9,7 +9,12 @@ import com.example.demo.exception.ResourceNotFoundException;
 
 @Service
 public class UserPortfolioServiceImpl implements UserPortfolioService{
-    @Autowired UserPortfolioRepository port_folio;
+    
+    private final UserPortfolioRepository port_folio;
+    
+    public UserPortfolioServiceImpl(UserPortfolioRepository port_folio) {
+        this.port_folio = port_folio;
+    }
     @Override
     public UserPortfolio createPortfolio(UserPortfolio portfolio){
         return port_folio.save(portfolio);
