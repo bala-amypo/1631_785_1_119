@@ -11,11 +11,11 @@ import com.example.demo.exception.ResourceNotFoundException;
 public class PortfolioHoldingServiceImpl implements PortfolioHoldingService{
     @Autowired UserPortfolioRepository port_folio;
     @Override
-    public PortfolioHolding createPortfolio(PortfolioHolding portfolio){
+    public PortfolioHolding createHolding(PortfolioHolding Holding){
         return port_folio.save(portfolio);
     }
     @Override
-   public PortfolioHolding updatePortfolio(Long id,PortfolioHolding portfolio){
+   public PortfolioHolding updateHolding(Long id,PortfolioHolding Holding){
         if(port_folio.existsById(id)){
             portfolio.setId(id);
             return port_folio.save(portfolio);
@@ -24,17 +24,17 @@ public class PortfolioHoldingServiceImpl implements PortfolioHoldingService{
    }
     
    @Override
-   public UserPortfolio getPortfolioById(Long id){
+   public PortfolioHolding getHoldingById(Long id){
         return port_folio.findById(id).orElseThrow(()->new ResourceNotFoundException(" Portfolio Not found"));
 
    }
     @Override
-   public List<UserPortfolio>getPortfoliosByUser(){
+   public List<PortfolioHolding>getHoldingsByPortfolio(){
         return port_folio.findAll();
 
    }
    @Override
-    public String deactivatePortfolio(Long id){
+    public String deleteHolding(Long id){
         port_folio.deleteById(id);
         return "delete successfully";
 
