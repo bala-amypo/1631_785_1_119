@@ -16,7 +16,6 @@ public class RiskAnalysisServiceImpl implements RiskAnalysisService{
     }
      @Override
     public RiskAnalysisResult analyzePortfolio(Long portfolioId) {
-
         RiskAnalysisResult repo = new RiskAnalysisResult();
         repo.setPortfolioId(portfolioId);
         repo.setAnalysisDate(LocalDateTime.now());
