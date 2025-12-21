@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.validation.constraints.NotNull;
 // import java.sql.Timestamp;
 import jakarta.persistence.JoinColumn;
 import java.time.LocalDateTime;
@@ -21,6 +22,7 @@ public class RiskAnalysisResult{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "portfolio_id")
     private UserPortfolio portfolio;
@@ -31,8 +33,10 @@ public class RiskAnalysisResult{
     private String notes;
      @PrePersist
     public void Oncreate(){
+         if (this.analysis == null){
          LocalDateTime resulted= LocalDateTime.now();
          this.analysis=resulted;
+         }
     }
 
 }
