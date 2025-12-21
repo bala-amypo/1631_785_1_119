@@ -19,9 +19,10 @@ public class RiskAnalysisResult{
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     @Column(name = "thresholdName",unique = true)
-    private String thresholdName;
+    private LocalDateTime ana
     private Double highestStockPercentage;
-    private Double maxSectorPercentage;
-    private boolean active;
+    private Double highestSectorPercentage;
+    private boolean isHighRisk;
+    private String notes;
 
 }
