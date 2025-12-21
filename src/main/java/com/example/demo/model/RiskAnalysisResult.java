@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 // import java.sql.Timestamp;
+import jakarta.persistence.JoinColumn;
 import java.time.LocalDateTime;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
