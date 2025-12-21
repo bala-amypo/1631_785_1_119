@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.RiskThreshold;
 import com.example.demo.service.RiskThresholdService;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @RestController
 public class RiskThresholdController
 {
-    @Autowired RiskThresholdService ser;
+    
      private final RiskThresholdService ser;
     
     public RiskThresholdController(RiskThresholdService ser) {
