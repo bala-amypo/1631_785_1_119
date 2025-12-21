@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.model.RiskAnalysisResult;
 @Repository
 public interface RiskAnalysisResultRepository extends JpaRepository<RiskAnalysisResult,Long>{
-    // List<RiskAnalysisResult>findByPortfolioId(Long portfolioId);
+    List<RiskAnalysisResult>findByPortfolio_Id(Long portfolioId);
 }
