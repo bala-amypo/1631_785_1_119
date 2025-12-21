@@ -19,15 +19,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User register(User user) {
-        // set createdAt
-        user.setCreatedAt(LocalDateTime.now());
-
-        // if role not provided, default MONITOR
         if (user.getRole() == null) {
             user.setRole("MONITOR");
         }
-
-        // just save normally (no hashing, no validation)
         return repos.save(user);
     }
 
