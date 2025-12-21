@@ -23,7 +23,7 @@ public class RiskAnalysisResultServiceImpl implements RiskAnalysisResultService{
    }
     @Override
    public List<RiskAnalysisResult>getAnalysesForPortfolio(Long portfolioId){
-        return Results.findAll();
+        return Results.findAll(portfolioId);
 
    }
 
