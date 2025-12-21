@@ -21,10 +21,10 @@ public class RiskAnalysisResultServiceImpl implements RiskAnalysisResultService{
         return Results.findById(id).orElseThrow(()->new ResourceNotFoundException("Result Not found"));
 
    }
-//     @Override
-//    public List<RiskThreshold>getAllThresholds(){
-//         return thresholds.findAll();
+    @Override
+   public List<RiskAnalysisResult>getAnalysesForPortfolio(Long portfolioId){
+        return Results.findAll();
 
-//    }
+   }
 
 }
