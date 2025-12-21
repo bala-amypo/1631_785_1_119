@@ -17,9 +17,6 @@ import jakarta.persistence.PrePersist;
 @AllArgsConstructor
 @NoArgsConstructor
 
-
-
-
 public class RiskAnalysisResult{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)

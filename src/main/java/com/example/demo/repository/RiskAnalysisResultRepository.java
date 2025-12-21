@@ -2,3 +2,5 @@
 // public interface RiskAnalysisResultRepository{
     
 // }
+
+import jakarta.persistence.JoinColumn;
