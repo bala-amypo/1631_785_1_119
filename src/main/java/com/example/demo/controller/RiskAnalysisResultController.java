@@ -19,15 +19,15 @@ public class RiskAnalysisResultController
         this.ser=ser;
     }
     @PostMapping("/Post_Analysis/analyze/{portfolioId}")
-    // public RiskAnalysisResult analyzePortfolio(Long portfolioId){
-    //     return ser.createPortfolio(portfolio);
-    // }
+    public RiskAnalysisResult analyze_Portfolio(@PathVariableLong portfolioId){
+        return ser.analyzePortfolio(portfolioId);
+    }
     
-    // @GetMapping("/getid_RiskAnalysisResult/{id}")
-    // public UserPortfolio get_PortfolioById(@PathVariable Long id){
-    //     return ser.getPortfolioById(id);
+    // @GetMapping("/getid_Analysis/{id}")
+    // public RiskAnalysisResult get_AnalysisById(@PathVariable Long id){
+    //     return ser.getAnalysisById(id);
     // }
-    // @GetMapping("/getall_RiskAnalysisResult/user/{userId}")
+    // @GetMapping("/getall_Analysis/user/{userId}")
     // public List<UserPortfolio> get_PortfoliosByUser(){
     //     return ser.getPortfoliosByUser();
     // }
