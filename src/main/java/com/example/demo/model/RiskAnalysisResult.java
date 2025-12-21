@@ -23,7 +23,7 @@ public class RiskAnalysisResult{
     private Long id;
     @ManyToOne
     @JoinColumn(name = "department_id")
-    private UserP
+    private UserPortfolio portfolio;
     private Timestamp analysis;
     private Double highestStockPercentage;
     private Double highestSectorPercentage;
