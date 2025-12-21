@@ -20,7 +20,7 @@ public class RiskAnalysisResultController
     }
     @PostMapping("/Post_Analysis/analyze/{portfolioId}")
     public RiskAnalysisResult analyze_Portfolio(@RequestBody RiskAnalysisResult result){
-        return ser.analyzePortfolio(result);
+        return ser.analyzePortfolio(result.getPortfolioId);
     }
     
     @GetMapping("/getid_Analysis/{id}")
