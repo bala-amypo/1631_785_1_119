@@ -22,7 +22,7 @@ public class RiskAnalysisController
     }
     @PostMapping("/Post_analysis/analyze/{portfolioId}")
     public RiskAnalysisResult analyze_Portfolio(@RequestBody RiskAnalysisResult portfolios){
-        return ser.analyzePortfolio(ortfolios);
+        return ser.analyzePortfolio(portfolios);
     }
 
 
