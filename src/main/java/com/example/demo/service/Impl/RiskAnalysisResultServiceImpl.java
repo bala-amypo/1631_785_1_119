@@ -11,7 +11,7 @@ import com.example.demo.exception.ResourceNotFoundException;
 @Service
 public class RiskAnalysisResultServiceImpl implements RiskAnalysisResultService{
      
-    private RiskAnalysisResultRepository Results;
+    public RiskAnalysisResultRepository Results;
     @Autowired
     public RiskAnalysisResultServiceImpl(RiskAnalysisResultRepository Results){
      this.Results=Results;
@@ -35,7 +35,7 @@ public class RiskAnalysisResultServiceImpl implements RiskAnalysisResultService{
    }
 
 }
-public First first;
+// public First first;
 // @Autowired
 // public Second(First first){
 //     this.first=first;
