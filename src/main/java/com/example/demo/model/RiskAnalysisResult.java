@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-
 import java.sql.Timestamp;
 
 
@@ -21,7 +20,7 @@ public class RiskAnalysisResult{
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     
-    private Time analysis;
+    private Timestamp analysis;
     private Double highestStockPercentage;
     private Double highestSectorPercentage;
     private boolean isHighRisk;
