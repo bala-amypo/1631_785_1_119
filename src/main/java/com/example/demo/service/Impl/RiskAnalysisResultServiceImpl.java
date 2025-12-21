@@ -39,10 +39,3 @@ public class RiskAnalysisResultServiceImpl implements RiskAnalysisResultService{
    }
 
 }
-// public First first;
-// @Autowired
-// public Second(First first){
-//     this.first=first;
-//     this.first.name="John";
-//     this.first.age=30;
-// }
