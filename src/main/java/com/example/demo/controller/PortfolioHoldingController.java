@@ -24,19 +24,19 @@ public class PortfolioHoldingController
         this.ser = ser;
     }
     @PostMapping("/Post_PortfolioHolding")
-    public UserPortfolio create_Holding(@RequestBody PortfolioHolding Holding){
+    public PortfolioHolding create_Holding(@RequestBody PortfolioHolding Holding){
         return ser.createHolding(Holding);
     }
     @PutMapping("/Put_PortfolioHolding/{id}")
-    public UserPortfolio update_Holding(@PathVariable Long id,@RequestBody PortfolioHolding model){
+    public PortfolioHolding update_Holding(@PathVariable Long id,@RequestBody PortfolioHolding model){
         return ser. updateHolding(id,model);
     }
     @GetMapping("/getid_PortfolioHolding/{id}")
-    public UserPortfolio get_HoldingById(@PathVariable Long id){
+    public PortfolioHolding get_HoldingById(@PathVariable Long id){
         return ser.getHoldingById(id);
     }
     @GetMapping("/getall_PortfolioHolding/portfolio/{portfolioId}")
-    public List<UserPortfolio> get_HoldingsByPortfolio(){
+    public List<PortfolioHolding> get_HoldingsByPortfolio(){
         return ser.getHoldingsByPortfolio();
     }
     @DeleteMapping("/delete_PortfolioHolding/{id}")
