@@ -1,6 +1,6 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Entity;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
