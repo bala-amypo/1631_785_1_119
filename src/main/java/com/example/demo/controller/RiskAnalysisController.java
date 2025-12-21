@@ -25,12 +25,12 @@ public class RiskAnalysisController
     // }
     
     @GetMapping("/getid_analysis/{id}")
-    public PortfolioHolding get_HoldingById(@PathVariable Long id){
-        return ser.getHoldingById(id);
+    public RiskAnalysisResult get_AnalysisById(@PathVariable Long id){
+        return ser.getAnalysisById(id);
     }
-    @GetMapping("/getall_PortfolioHolding/portfolio/{portfolioId}")
-    public List<PortfolioHolding> get_HoldingsByPortfolio(){
-        return ser.getHoldingsByPortfolio();
+    @GetMapping("/getall_analysis/portfolio/{portfolioId}")
+    public List<RiskAnalysisResult>get_AnalysesForPortfolio(){
+        return ser.getAnalysesForPortfolio();
     }
     
 
