@@ -10,6 +10,11 @@ import com.example.demo.exception.ResourceNotFoundException;
 @Service
 public class StockServiceImpl implements StockService{
     @Autowired StockRepository stocks;
+    private final PortfolioHoldingRepository stocks;
+    
+    public PortfolioHoldingServiceImpl(PortfolioHoldingRepository holdingRepository) {
+        this.holdingRepository = holdingRepository;
+    }
     @Override
     public Stock createStock(Stock stock){
         return stocks.save(stock);
