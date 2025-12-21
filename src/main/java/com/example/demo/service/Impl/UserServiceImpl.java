@@ -10,19 +10,21 @@ import com.example.demo.exception.ResourceNotFoundException;
 public class UserServiceImpl implements UserService {
     
     private final UserRepository userRepository;
+    
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
     
     @Override
     public User registerUser(User user) {
-        if (user.getRole() == null || user.getRole().isEmpty()) {
+        if(user.getRole() == null || user.getRole().isEmpty()) {
             user.setRole("MONITOR");
         }
-
-        if (userRepository.findByEmail(user.getEmail()).isPresent()) {
+        
+        if(userRepository.findByEmail(user.getEmail()).isPresent()) {
             throw new IllegalArgumentException("Email already exists");
         }
+        
         return userRepository.save(user);
     }
     
