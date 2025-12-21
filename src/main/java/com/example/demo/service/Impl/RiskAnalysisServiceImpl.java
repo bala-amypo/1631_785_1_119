@@ -18,6 +18,16 @@ public class RiskAnalysisServiceImpl implements RiskAnalysisService{
     // public RiskAnalysisResult analyzePortfolio(Long portfolioId){
     //     return result.save(Holding);
     // }
+     @Override
+    public RiskAnalysisResult analyzePortfolio(Long portfolioId) {
+        RiskAnalysisResult repo = new RiskAnalysisResult();
+        repo.setPortfolioId(portfolioId);
+        repo.setAnalysisDate(LocalDateTime.now());
+        repo.setHighestStockPercentage(0.0);
+        repo.setIsHighRisk(false);
+
+        return analysisRepository.save(result);
+    }
     
     
    @Override
