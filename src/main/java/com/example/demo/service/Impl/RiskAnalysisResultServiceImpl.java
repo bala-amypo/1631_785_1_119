@@ -24,7 +24,11 @@ public class RiskAnalysisResultServiceImpl implements RiskAnalysisResultService{
           Upr.findById(portfolioId).orElseThrow(()->new ResourceNotFoundException("Portfolio Not found"));
           RiskAnalysisResult result=new RiskAnalysisResult();
           result.setPortfolioId(portfolioId);
-         return Results.save(result);
+          result.setHighestStockPercentage(analysisRequest.getHighestStockPercentage());
+          result.setHighestSectorPercentage(analysisRequest.getHighestSectorPercentage());
+          result.setIsHighRisk(analysisRequest.getIsHighRisk());
+          result.setNotes(analysisRequest.getNotes());
+          return Results.save(result);
      }
 
        
