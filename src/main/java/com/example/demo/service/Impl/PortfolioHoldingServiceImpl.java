@@ -9,33 +9,37 @@ import com.example.demo.exception.ResourceNotFoundException;
 
 @Service
 public class PortfolioHoldingServiceImpl implements PortfolioHoldingService{
-    @Autowired UserPortfolioRepository port_folio;
+    private final PortfolioHoldingRepository holdingRepository;
+    
+    public PortfolioHoldingServiceImpl(PortfolioHoldingRepository holdingRepository) {
+        this.holdingRepository = holdingRepository;
+    }
     @Override
     public PortfolioHolding createHolding(PortfolioHolding Holding){
-        return port_folio.save(portfolio);
+        return holdingRepository.save(Holding);
     }
     @Override
    public PortfolioHolding updateHolding(Long id,PortfolioHolding Holding){
-        if(port_folio.existsById(id)){
-            portfolio.setId(id);
-            return port_folio.save(portfolio);
+        if(holdingRepository.existsById(id)){
+            Holding.setId(id);
+            return holdingRepository.save(Holding);
         }
         return null;
    }
     
    @Override
    public PortfolioHolding getHoldingById(Long id){
-        return port_folio.findById(id).orElseThrow(()->new ResourceNotFoundException(" Portfolio Not found"));
+        return holdingRepository.findById(id).orElseThrow(()->new ResourceNotFoundException(" Portfolio Not found"));
 
    }
     @Override
    public List<PortfolioHolding>getHoldingsByPortfolio(){
-        return port_folio.findAll();
+        return holdingRepository.findAll();
 
    }
    @Override
     public String deleteHolding(Long id){
-        port_folio.deleteById(id);
+        holdingRepository.deleteById(id);
         return "delete successfully";
 
     }
