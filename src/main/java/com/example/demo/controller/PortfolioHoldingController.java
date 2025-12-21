@@ -18,13 +18,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 @RestController
 public class PortfolioHoldingController
 {
-    @Autowired UserPortfolioService ser;
+    private final PortfolioHoldingService ser;
+    
+    public PortfolioHoldingController(PortfolioHoldingService ser) {
+        this.ser = ser;
+    }
     @PostMapping("/Post_PortfolioHolding")
-    public UserPortfolio create_Holding(@RequestBody UserPortfolio portfolio){
-        return ser.createHolding(portfolio);
+    public UserPortfolio create_Holding(@RequestBody PortfolioHolding Holding){
+        return ser.createHolding(Holding);
     }
     @PutMapping("/Put_PortfolioHolding/{id}")
-    public UserPortfolio update_Holding(@PathVariable Long id,@RequestBody UserPortfolio model){
+    public UserPortfolio update_Holding(@PathVariable Long id,@RequestBody PortfolioHolding model){
         return ser. updateHolding(id,model);
     }
     @GetMapping("/getid_PortfolioHolding/{id}")
@@ -36,8 +40,8 @@ public class PortfolioHoldingController
         return ser.getHoldingsByPortfolio();
     }
     @DeleteMapping("/delete_PortfolioHolding/{id}")
-    public String deactivate_Portfolio(@PathVariable Long id){
-        return ser.deactivatePortfolio(id);
+    public String delete_Holding(@PathVariable Long id){
+        return ser.deleteHolding(id);
 
     }
 
