@@ -1,6 +1,6 @@
 
 package com.example.demo.service.Impl;
-import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import com.example.demo.model.RiskAnalysisResult;
@@ -35,19 +35,3 @@ public class RiskAnalysisResultServiceImpl implements RiskAnalysisResultService{
    }
 
 }
-
-// UserPortfolio portfolio = portfolioRepository.findById(portfolioId)
-//             .orElseThrow(() -> new ResourceNotFoundException("Portfolio not found with id " + portfolioId));
-
-//         RiskAnalysisResult analysis = new RiskAnalysisResult();
-//         analysis.setPortfolio(portfolio);
-//         analysis.setHighestStockPercentage(50.0);  // example
-//         analysis.setHighestSectorPercentage(60.0); // example
-//         analysis.setHighRisk(true);
-//         analysis.setNotes("Sample analysis");
-
-//         return results.save(analysis);
-
-
-//     @Autowired
-//     private UserPortfolioRepository portfolioRepository;
