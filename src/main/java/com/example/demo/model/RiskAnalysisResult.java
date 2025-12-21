@@ -24,7 +24,7 @@ public class RiskAnalysisResult{
     @NotNull
     @ManyToOne
     @JoinColumn(name = "portfolio_id")
-    // private Long portfolioId;
+    private UserPortfolio portfolioId;
     private LocalDateTime analysis;
     private Double highestStockPercentage;
     private Double highestSectorPercentage;
