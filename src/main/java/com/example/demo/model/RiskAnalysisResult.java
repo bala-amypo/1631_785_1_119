@@ -1,4 +1,27 @@
-// package com.example.demo.model;
-// public class RiskAnalysisResult{
-    
-// }
+package com.example.demo.model;
+import jakarta.persistence.Entity;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
+
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+
+
+public class RiskAnalysisResult{
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long id;
+    @Column(name = "thresholdName",unique = true)
+    private String thresholdName;
+    private Double highestStockPercentage;
+    private Double maxSectorPercentage;
+    private boolean active;
+
+}
