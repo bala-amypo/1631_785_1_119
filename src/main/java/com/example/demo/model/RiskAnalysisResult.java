@@ -31,8 +31,8 @@ public class RiskAnalysisResult{
     private Double highestSectorPercentage;
     private boolean isHighRisk;
     private String notes;
-     @PrePersist
-    public void Oncreate(){
+    @PrePersist
+    public void Onrecord(){
          if (this.analysis == null){
          LocalDateTime resulted= LocalDateTime.now();
          this.analysis=resulted;
