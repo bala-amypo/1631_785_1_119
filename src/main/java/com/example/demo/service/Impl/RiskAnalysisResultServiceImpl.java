@@ -1,11 +1,12 @@
 
 package com.example.demo.service.Impl;
-import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import com.example.demo.model.RiskAnalysisResult;
 import com.example.demo.service.RiskAnalysisResultService;
 import com.example.demo.repository.RiskAnalysisResultRepository;
+import com.example.demo.repository.UserPortfolioRepository;
 import com.example.demo.exception.ResourceNotFoundException;
 
 @Service
