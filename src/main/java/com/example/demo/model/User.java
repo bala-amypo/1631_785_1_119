@@ -44,8 +44,5 @@ public class User {
             this.createdAt = LocalDateTime.now();
         }
         
-        if (this.role == null || this.role.isEmpty()) {
-            this.role = "MONITOR";
-        }
     }
 }
