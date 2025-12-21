@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import java.sql.Timestamp;
-
+import jakarta.persistence.ManyToOne;
 
 @Entity
 @Data
@@ -15,11 +15,15 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 
 
+
+
 public class RiskAnalysisResult{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-    
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    private 
     private Timestamp analysis;
     private Double highestStockPercentage;
     private Double highestSectorPercentage;
