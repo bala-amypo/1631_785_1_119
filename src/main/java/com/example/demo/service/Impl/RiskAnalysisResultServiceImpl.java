@@ -11,13 +11,14 @@ import com.example.demo.exception.ResourceNotFoundException;
 @Service
 public class RiskAnalysisResultServiceImpl implements RiskAnalysisResultService{
     @Autowired RiskAnalysisResultRepository Results;
+     @Autowired
+     private UserPortfolioRepository portfolioRepository;
     
-    // @Override
-    // public RiskAnalysisResult analyzePortfolio(Long portfolioId){
+    @Override
+    public RiskAnalysisResult analyzePortfolio(Long portfolioId){
     UserPortfolio portfolio = portfolioRepository.findById(portfolioId).orElseThrow(() -> new ResourceNotFoundException("Portfolio not found with id " + portfolioId));
-
-    //     return Results.save(portfolioId);
-    // }
+         return Results.save(portfolioId);
+     }
        
    @Override
    public RiskAnalysisResult getAnalysisById(Long id){
