@@ -11,14 +11,17 @@ import com.example.demo.exception.ResourceNotFoundException;
 @Service
 public class RiskAnalysisResultServiceImpl implements RiskAnalysisResultService{
      private final RiskAnalysisResultRepository Results;
-     
-    public RiskAnalysisResultServiceImpl(RiskAnalysisResultRepository Results){
+     private final UserPortfolioRepository Upr;
+
+    public RiskAnalysisResultServiceImpl(RiskAnalysisResultRepository Results,UserPortfolioRepository Upr){
             this.Results=Results;
+            this.Upr=Upr;
     }
     
-//     @Override
-//     public RiskAnalysisResult analyzePortfolio(Long portfolioId){
-//           // portfolio_repo.findById(portfolioId).orElseThrow(()->new ResourceNotFoundException("Result Not found"));
+    @Override
+    public RiskAnalysisResult analyzePortfolio(Long portfolioId){
+          Upr.findById(portfolioId).orElseThrow(()->new ResourceNotFoundException("Result Not found"));
+          
 //          return Results.save(portfolioId);
 //      }
        
