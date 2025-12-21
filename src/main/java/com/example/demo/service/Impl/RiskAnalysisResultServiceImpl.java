@@ -22,8 +22,9 @@ public class RiskAnalysisResultServiceImpl implements RiskAnalysisResultService{
     public RiskAnalysisResult analyzePortfolio(Long portfolioId){
           Upr.findById(portfolioId).orElseThrow(()->new ResourceNotFoundException("Result Not found"));
           RiskAnalysisResult result=new RiskAnalysisResult();
-//          return Results.save(result);
-//      }
+         return Results.save(result);
+     }
+     
        
    @Override
    public RiskAnalysisResult getAnalysisById(Long id){
