@@ -7,9 +7,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.validation.constraints.NotNull;
-// import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinColumn;
 import java.time.LocalDateTime;
-// import jakarta.persistence.ManyToOne;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 
 @Entity
@@ -22,9 +22,9 @@ public class RiskAnalysisResult{
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     @NotNull
-    // @ManyToOne
-    // @JoinColumn(name = "portfolio_id")
-    private Long portfolioId;
+    @ManyToOne
+    @JoinColumn(name = "portfolio_id")
+    private Long portfolio;
     private LocalDateTime analysis;
     private Double highestStockPercentage;
     private Double highestSectorPercentage;
