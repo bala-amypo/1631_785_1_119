@@ -7,6 +7,6 @@ public interface PortfolioHoldingService {
     PortfolioHolding createHolding(PortfolioHolding holding);
     PortfolioHolding updateHolding(Long id, PortfolioHolding holding);
     PortfolioHolding getHoldingById(Long id);
-    List<PortfolioHolding> getHoldingsByPortfolio(Long portfolioId);
+    List<PortfolioHolding> getHoldingsByPortfolio();
     String deleteHolding(Long id);
 }
