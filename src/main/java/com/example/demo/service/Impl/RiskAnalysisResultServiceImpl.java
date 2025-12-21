@@ -6,17 +6,17 @@ package com.example.demo.service.Impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import com.example.demo.model.RiskThreshold;
-import com.example.demo.service.RiskThresholdService;
-import com.example.demo.repository.RiskThresholdRepository;
+import com.example.demo.model.RiskAnalysisResult;
+import com.example.demo.service.RiskAnalysisResultService;
+import com.example.demo.repository.RiskAnalysisResultRepository;
 import com.example.demo.exception.ResourceNotFoundException;
 
 @Service
-public class RiskThresholdServiceImpl implements RiskThresholdService{
-    @Autowired RiskThresholdRepository thresholds;
+public class RiskAnalysisResultServiceImpl implements RiskAnalysisResultService{
+    @Autowired RiskAnalysisResultRepository Result;
     @Override
-    public RiskThreshold createThreshold(RiskThreshold threshold){
-        return thresholds.save(threshold);
+    public RiskAnalysisResult analyzePortfolio(RiskAnalysisResult Result){
+        return Results.save(Result);
     }
     @Override
    public RiskThreshold updateThreshold(Long id,RiskThreshold threshold){

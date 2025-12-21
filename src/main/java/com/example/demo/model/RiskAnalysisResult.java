@@ -31,8 +31,8 @@ public class RiskAnalysisResult{
     private String notes;
      @PrePersist
     public void Oncreate(){
-         LocalDateTime result= LocalDateTime.now();
-         this.analysis=result;
+         LocalDateTime resulted= LocalDateTime.now();
+         this.analysis=resulted;
     }
 
 }
