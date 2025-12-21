@@ -12,7 +12,7 @@ import com.example.demo.exception.ResourceNotFoundException;
 public class RiskAnalysisResultServiceImpl implements RiskAnalysisResultService{
     @Autowired RiskAnalysisResultRepository Result;
     @Override
-    public RiskAnalysisResult analyzePortfolio(RiskAnalysisResult Result){
+    public RiskAnalysisResult analyzePortfolio(Long portfolioId){
         return Results.save(Result);
     }
        
