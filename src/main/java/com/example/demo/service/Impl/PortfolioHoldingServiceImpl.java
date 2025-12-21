@@ -1,5 +1,5 @@
 package com.example.demo.service.Impl;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import com.example.demo.model.PortfolioHolding;
@@ -8,71 +8,37 @@ import com.example.demo.repository.PortfolioHoldingRepository;
 import com.example.demo.exception.ResourceNotFoundException;
 
 @Service
-public class PortfolioHoldingServiceImpl implements PortfolioHoldingService {
-    
-    private final PortfolioHoldingRepository holdingRepository;
-    public PortfolioHoldingServiceImpl(PortfolioHoldingRepository holdingRepository) {
-        this.holdingRepository = holdingRepository;
+public class PortfolioHoldingServiceImpl implements PortfolioHoldingService{
+    @Autowired UserPortfolioRepository port_folio;
+    @Override
+    public PortfolioHolding createPortfolio(PortfolioHolding portfolio){
+        return port_folio.save(portfolio);
     }
     @Override
-    public PortfolioHolding createHolding(PortfolioHolding holding) {
-        if(holding.getQuantity() == null || holding.getQuantity() <= 0) {
-            throw new IllegalArgumentException("Quantity must be greater than 0");
+   public PortfolioHolding updatePortfolio(Long id,PortfolioHolding portfolio){
+        if(port_folio.existsById(id)){
+            portfolio.setId(id);
+            return port_folio.save(portfolio);
         }
-        
-        if(holding.getMarketValue() == null || holding.getMarketValue().doubleValue() < 0) {
-            throw new IllegalArgumentException("Market value must be 0 or positive");
-        }
-        
-        return holdingRepository.save(holding);
-    }
+        return null;
+   }
     
+   @Override
+   public UserPortfolio getPortfolioById(Long id){
+        return port_folio.findById(id).orElseThrow(()->new ResourceNotFoundException(" Portfolio Not found"));
+
+   }
     @Override
-    public PortfolioHolding updateHolding(Long id, PortfolioHolding holding) {
-        PortfolioHolding existingHolding = holdingRepository.findById(id)
-            .orElseThrow(() -> new ResourceNotFoundException("Holding not found"));
-        
-        if(holding.getQuantity() != null) {
-            if(holding.getQuantity() <= 0) {
-                throw new IllegalArgumentException("Quantity must be greater than 0");
-            }
-            existingHolding.setQuantity(holding.getQuantity());
-        }
-        
-        if(holding.getMarketValue() != null) {
-            if(holding.getMarketValue().doubleValue() < 0) {
-                throw new IllegalArgumentException("Market value must be 0 or positive");
-            }
-            existingHolding.setMarketValue(holding.getMarketValue());
-        }
-        
-        if(holding.getPortfolioId() != null) {
-            existingHolding.setPortfolioId(holding.getPortfolioId());
-        }
-        
-        if(holding.getStockId() != null) {
-            existingHolding.setStockId(holding.getStockId());
-        }
-        
-        return holdingRepository.save(existingHolding);
+   public List<UserPortfolio>getPortfoliosByUser(){
+        return port_folio.findAll();
+
+   }
+   @Override
+    public String deactivatePortfolio(Long id){
+        port_folio.deleteById(id);
+        return "delete successfully";
+
     }
-    
-    @Override
-    public PortfolioHolding getHoldingById(Long id) {
-        return holdingRepository.findById(id)
-            .orElseThrow(() -> new ResourceNotFoundException("Holding not found"));
-    }
-    
-    @Override
-    public List<PortfolioHolding> getHoldingsByPortfolio(Long portfolioId) {
-        return holdingRepository.findByPortfolioId(portfolioId);
-    }
-    
-    @Override
-    public String deleteHolding(Long id) {
-        PortfolioHolding holding = holdingRepository.findById(id)
-            .orElseThrow(() -> new ResourceNotFoundException("Holding not found"));
-        
-        holdingRepository.delete(holding);
-    }
+
+
 }
