@@ -19,10 +19,15 @@ public class RiskAnalysisController
     public RiskAnalysisController(RiskAnalysisService ser) {
         this.ser = ser;
     }
-    // @PostMapping("/Post_PortfolioHolding")
-    // public PortfolioHolding create_Holding(@RequestBody PortfolioHolding Holding){
-    //     return ser.createHolding(Holding);
+    // @PostMapping("/Post_analysis/analyze/{portfolioId}")
+    // public RiskAnalysisResult analyze_Portfolio(@RequestBody PortfolioHolding Holding){
+    //     return ser.analyzePortfolio(Holding);
     // }
+    @PostMapping("/{portfolioId}")
+public RiskAnalysisResult runAnalysis(@PathVariable Long portfolioId) {
+    return analysisService.analyzePortfolio(portfolioId);
+}
+
     
     @GetMapping("/getid_analysis/{id}")
     public RiskAnalysisResult get_AnalysisById(@PathVariable Long id){
