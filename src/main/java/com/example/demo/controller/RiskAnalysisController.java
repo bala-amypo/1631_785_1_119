@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.RiskAnalysisResult;
@@ -20,7 +21,7 @@ public class RiskAnalysisController
         this.ser = ser;
     }
     @PostMapping("/Post_analysis/analyze/{portfolioId}")
-    public RiskAnalysisResult analyze_Portfolio(@PathVariable Long portfolioId){
+    public RiskAnalysisResult analyze_Portfolio(@RequestBody RiskAnalysisResult portfolios){
         return ser.analyzePortfolio(ortfolios);
     }
 
