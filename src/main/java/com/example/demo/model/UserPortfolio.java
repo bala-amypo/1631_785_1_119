@@ -13,13 +13,13 @@ import lombok.AllArgsConstructor;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Column;
 import jakarta.persistence.PreUpdate;
-
+import jakarta.persistence.@Tav
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
+@Table(name = "user_portfolios")
 public class UserPortfolio{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
