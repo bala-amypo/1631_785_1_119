@@ -27,6 +27,9 @@ public class RiskAnalysisResult{
     private Double highestSectorPercentage;
     private boolean isHighRisk;
     private String notes;
+    @ManyToOne     
+    @JoinColumn(name = "portfolio_id")
+    private UserPortfolio portfolio;
     @PrePersist
     public void Onrecord(){
         if(this.analysis == null){
