@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.PortfolioHolding;
 import com.example.demo.service.PortfolioHoldingService;
 import org.springframework.web.bind.annotation.PathVariable;
-package com.example.demo.controller;
+
 
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
