@@ -1,39 +1,29 @@
-package com.example.demo.service.Impl;
-
-import org.springframework.stereotype.Service;
-import java.util.List;
-import com.example.demo.model.RiskAnalysisResult;
-import com.example.demo.service.RiskAnalysisService;
-import com.example.demo.repository.RiskAnalysisResultRepository;
-import com.example.demo.exception.ResourceNotFoundException;
-
-import java.time.LocalDateTime;
-
 @Service
-public class RiskAnalysisServiceImpl implements RiskAnalysisService{
-    private final RiskAnalysisResultRepository result;
-    
-    public RiskAnalysisServiceImpl(RiskAnalysisResultRepository result) {
-        this.result = result;
-    }
-     @Override
-    public RiskAnalysisResult analyzePortfolio(RiskAnalysisResult portfolios) {
-        return result.save(portfolios);
-    
-    }
-    
-    
-   @Override
-   public RiskAnalysisResult getAnalysisById(Long id){
-        return result.findById(id).orElseThrow(()->new ResourceNotFoundException(" Portfolio Not found"));
+public class RiskAnalysisServiceImpl implements RiskAnalysisService {
 
-   }
+    private final RiskAnalysisResultRepository resultRepository;
+
+    public RiskAnalysisServiceImpl(RiskAnalysisResultRepository resultRepository) {
+        this.resultRepository = resultRepository;
+    }
+
     @Override
-   public List<RiskAnalysisResult> getAnalysesForPortfolio(){
-        return result.findAll();
+    public RiskAnalysisResult analyzePortfolio(RiskAnalysisResult analysis) {
+        // Automatically sets analysis date if not provided
+        if (analysis.getAnalysis() == null) {
+            analysis.setAnalysis(LocalDateTime.now());
+        }
+        return resultRepository.save(analysis);
+    }
 
-   }
-   
+    @Override
+    public RiskAnalysisResult getAnalysisById(Long id) {
+        return resultRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Portfolio analysis not found"));
+    }
 
-
+    @Override
+    public List<RiskAnalysisResult> getAnalysesForPortfolio(Long portfolioId) {
+        return resultRepository.findByPortfolio_Id(portfolioId);
+    }
 }
