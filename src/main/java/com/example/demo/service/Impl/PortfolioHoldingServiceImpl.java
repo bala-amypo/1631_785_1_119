@@ -40,7 +40,7 @@ public class PortfolioHoldingServiceImpl implements PortfolioHoldingService {
 
     @Override
     public List<PortfolioHolding> getHoldingsByPortfolio(Long portfolioId){
-        return holdingRepository.findByPortfolio_Id(portfolioId);
+        return holdingRepository.findByPortfolioId(portfolioId);
     }
 
     @Override
