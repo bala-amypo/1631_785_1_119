@@ -1,3 +1,5 @@
+package com.example.demo.service.Impl; 
+import org.springframework.stereotype.Service; import java.util.List; import com.example.demo.model.RiskThreshold; import com.example.demo.service.RiskThresholdService; import com.example.demo.repository.RiskThresholdRepository; import com.example.demo.exception.ResourceNotFoundException;
 @Service
 public class RiskThresholdServiceImpl implements RiskThresholdService {
 
