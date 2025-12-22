@@ -1,39 +1,27 @@
 package com.example.demo.model;
 
-import java.time.LocalDateTime;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.Column;
-import jakarta.persistence.PreUpdate;
-import jakarta.persistence.@Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Table;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "user_portfolios")
-public class UserPortfolio{
+public class UserPortfolio {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull(message="User Id must not be null")
+    
     private Long userId;
-
-    @NotBlank(message="Portfolio name must not be blank")
-    @Column(name = "portfolioName",unique = true)
     private String portfolioName;
-
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
-    private boolean action;
+    private boolean isActive;
 
     @PrePersist
     public void Oncreate(){
