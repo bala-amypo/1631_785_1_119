@@ -31,7 +31,7 @@ public class RiskAnalysisResult {
     private String notes;
 
     @ManyToOne
-    @JoinColumn(name = "portfolio_id", nullable = false)
+    @JoinColumn(name = "portfolio_id")
     private UserPortfolio portfolio;
 
     @PrePersist
