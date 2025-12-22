@@ -17,7 +17,7 @@ public class StockServiceImpl implements StockService {
     @Override
     public Stock createStock(Stock stock) {
         if (stockRepository.findByTicker(stock.getTicker()).isPresent()) {
-            throw new RuntimeException("Duplicate ticker");
+            throw new ResourceNotFoundException("Duplicate ticker");
         }
         return stockRepository.save(stock);
     }
