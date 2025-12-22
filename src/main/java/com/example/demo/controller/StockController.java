@@ -1,49 +1,49 @@
 package com.example.demo.controller;
+
 import java.util.List;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
-import com.example.demo.model.Stock;
-import com.example.demo.service.StockService;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-// import org.springframework.http.ResponseEntity;
+
+import org.springframework.web.bind.annotation.*;
+
+import com.example.demo.model.PortfolioHolding;
+import com.example.demo.service.PortfolioHoldingService;
 
 @RestController
-@RequestMapping("/api/stocks")
-public class StockController {
-    
-    private final StockService stockService;
-    
-    public StockController(StockService stockService) {
-        this.stockService = stockService;
+@RequestMapping("/api/holdings")
+public class PortfolioHoldingController {
+
+    private final PortfolioHoldingService holdingService;
+
+    public PortfolioHoldingController(PortfolioHoldingService holdingService) {
+        this.holdingService = holdingService;
     }
-    
+
+    // Create a new holding
     @PostMapping
-    public Stock createStock(@RequestBody Stock stock) {
-        return stockService.createStock(stock);
+    public PortfolioHolding createHolding(@RequestBody PortfolioHolding holding) {
+        return holdingService.createHolding(holding);
     }
-    
+
+    // Update an existing holding
     @PutMapping("/{id}")
-    public Stock updateStock(@PathVariable Long id, @RequestBody Stock stock) {
-        return stockService.updateStock(id, stock);
+    public PortfolioHolding updateHolding(@PathVariable Long id, @RequestBody PortfolioHolding holding) {
+        return holdingService.updateHolding(id, holding);
     }
-    
+
+    // Get a holding by ID
     @GetMapping("/{id}")
-    public Stock getStock(@PathVariable Long id) {
-        return stockService.getStockById(id);
+    public PortfolioHolding getHolding(@PathVariable Long id) {
+        return holdingService.getHoldingById(id);
     }
-    
+
+    // Get all holdings
     @GetMapping
-    public List<Stock> getAllStocks() {
-        return stockService.getAllStocks();
+    public List<PortfolioHolding> getAllHoldings() {
+        return holdingService.getHoldingsByPortfolio();
     }
-    
+
+    // Delete or deactivate a holding
     @DeleteMapping("/{id}")
-    public void deactivateStock(@PathVariable Long id) {
-        stockService.deactivateStock(id);
+    public String deleteHolding(@PathVariable Long id) {
+        return holdingService.deleteHolding(id);
     }
 }
