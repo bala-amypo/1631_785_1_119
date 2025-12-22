@@ -9,6 +9,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Table;
 import java.math.BigDecimal;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
 
 @Entity
 @Data
@@ -17,26 +19,31 @@ import java.math.BigDecimal;
 @Table(name = "portfolio_holdings")
 public class PortfolioHolding {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    private Long portfolioId;
-    private Long stockId;
-    private Double quantity;
-    private BigDecimal marketValue;
-    
-    
-    private UserPortfolio portfolio;
-    private Stock stock;
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+            private Long id;
+                
+                    private Long portfolioId;
+                        private Long stockId;
+                            private Double quantity;
+                                private BigDecimal marketValue;
+                                    
+                                        @ManyToOne
+                                            @JoinColumn(name = "portfolio_id")
+                                                private UserPortfolio portfolio;
+                                                    
+                                                        @ManyToOne
+                                                            @JoinColumn(name = "stock_id")
+                                                                private Stock stock;
 
-    @PrePersist
-    public void Oncreated() {
-        
-        if(this.lastUpdated == null) {
-            LocalDateTime last= LocalDateTime.now();
-            this.lastUpdated = last;
-        }
-    }
-}
-    
-    
+                                                                    @PrePersist
+                                                                        public void Oncreated() {
+                                                                                
+                                                                                        if(this.lastUpdated == null) {
+                                                                                                    LocalDateTime last= LocalDateTime.now();
+                                                                                                                this.lastUpdated = last;
+                                                                                                                        }
+                                                                                                                            }
+                                                                                                                            }
+                                                                                                                                
+                                                                                                                                    
+                                                                                                                                    

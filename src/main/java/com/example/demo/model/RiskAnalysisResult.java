@@ -10,7 +10,8 @@ import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 import jakarta.persistence.PrePersist;
-
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
 @Entity
 @Data
 @AllArgsConstructor
