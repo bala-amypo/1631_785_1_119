@@ -8,5 +8,5 @@ import com.example.demo.model.PortfolioHolding;
 
 @Repository
 public interface PortfolioHoldingRepository extends JpaRepository<PortfolioHolding, Long> {
-    
+    List<PortfolioHolding> findByPortfolioId(Long portfolioId);
 }
