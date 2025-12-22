@@ -10,6 +10,7 @@ import com.example.demo.model.Stock;
 import com.example.demo.service.StockService;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.http.ResponseEntity;
 
 @RestController
 @RequestMapping("/api/stocks")
