@@ -13,7 +13,7 @@ import lombok.AllArgsConstructor;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Column;
 import jakarta.persistence.PreUpdate;
-import jakarta.persistence.@Tav
+import jakarta.persistence.@Table;
 
 @Entity
 @Data
