@@ -31,6 +31,6 @@ public class RiskAnalysisServiceImpl implements RiskAnalysisService {
 
     @Override
     public List<RiskAnalysisResult> getAnalysesForPortfolio(Long portfolioId) {
-        return resultRepository.findByPortfolio_Id(portfolioId);
+        return resultRepository.findByPortfolioId(portfolioId);
     }
 }
