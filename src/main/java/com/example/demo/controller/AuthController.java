@@ -15,7 +15,6 @@ public class AuthController {
         this.userService = userService;
     }
 
-    // Register a new user
     @PostMapping("/register")
     public User registerUser(@RequestBody User user) {
         return userService.register(user);
