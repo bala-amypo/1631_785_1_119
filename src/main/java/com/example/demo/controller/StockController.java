@@ -9,36 +9,41 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.Stock;
 import com.example.demo.service.StockService;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
-public class StockController
-{
-   
-    private final StockService ser;
-    public StockController(StockService ser) {
-        this.ser = ser;
+@RequestMapping("/api/stocks")
+public class StockController {
+    
+    private final StockService stockService;
+    
+    public StockController(StockService stockService) {
+        this.stockService = stockService;
     }
     
-    @PostMapping("/Post_Stock")
-    public Stock create_Stock(@RequestBody Stock stock){
-        return ser.createStock(stock);
+    @PostMapping
+    public ResponseEntity<Stock> createStock(@RequestBody Stock stock) {
+        return ResponseEntity.ok(stockService.createStock(stock));
     }
-    @PutMapping("/Put_stock/{id}")
-    public Stock update_Stock(@PathVariable Long id,@RequestBody Stock model){
-        return ser.updateStock(id,model);
+    
+    @PutMapping("/{id}")
+    public ResponseEntity<Stock> updateStock(@PathVariable Long id, @RequestBody Stock stock) {
+        return ResponseEntity.ok(stockService.updateStock(id, stock));
     }
-    @GetMapping("/getid_Stock/{id}")
-    public Stock get_StockById(@PathVariable Long id){
-        return ser.getStockById(id);
+    
+    @GetMapping("/{id}")
+    public ResponseEntity<Stock> getStock(@PathVariable Long id) {
+        return ResponseEntity.ok(stockService.getStockById(id));
     }
-    @GetMapping("/getall_Stock")
-    public List<Stock> get_AllStocks(){
-        return ser.getAllStocks();
+    
+    @GetMapping
+    public ResponseEntity<List<Stock>> getAllStocks() {
+        return ResponseEntity.ok(stockService.getAllStocks());
     }
-    @DeleteMapping("/deleteStock/{id}")
-    public String deactivate_Stock(@PathVariable Long id){
-        return ser.deactivateStock(id);
-
+    
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deactivateStock(@PathVariable Long id) {
+        stockService.deactivateStock(id);
+        return ResponseEntity.ok().build();
     }
-
 }
