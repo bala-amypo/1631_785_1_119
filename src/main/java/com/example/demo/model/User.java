@@ -36,7 +36,7 @@ public class User {
     @NotNull
     private String password;
     
-    private String role;
+    private String role="MONITOR";
     
     private LocalDateTime createdAt;
     
