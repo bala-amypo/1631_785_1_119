@@ -1,39 +1,34 @@
-
 package com.example.demo.model;
 
-import java.time.LocalDateTime;
+import jakarta.persistence.Entity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
-import java.math.BigDecimal;
 import jakarta.persistence.Id;
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.PreUpdate;
-import jakarta.persistence.PrePersist;
+import jakarta.persistence.Table;
+import java.math.BigDecimal;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
+@Table(name = "portfolio_holdings")
 public class PortfolioHolding {
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     private Long portfolioId;
-    
     private Long stockId;
-    
     private Double quantity;
-    
     private BigDecimal marketValue;
     
-    private  LocalDateTime lastUpdated;
     
+    private UserPortfolio portfolio;
+    private Stock stock;
+}
     @PrePersist
     public void Oncreated() {
         
