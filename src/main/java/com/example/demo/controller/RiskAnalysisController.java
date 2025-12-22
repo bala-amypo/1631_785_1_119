@@ -6,35 +6,33 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.RiskAnalysisResult;
 import com.example.demo.service.RiskAnalysisService;
 import org.springframework.web.bind.annotation.PathVariable;
-
 @RestController
-public class RiskAnalysisController
-{
-    private final RiskAnalysisService ser;
+@RequestMapping("/api/risk-analysis")
+public class RiskAnalysisController {
     
-    public RiskAnalysisController(RiskAnalysisService ser) {
-        this.ser = ser;
-    }
-    @PostMapping("/Post_analysis/analyze/{portfolioId}")
-    public RiskAnalysisResult analyze_Portfolio(@RequestBody RiskAnalysisResult portfolios){
-        return ser.analyzePortfolio(portfolios);
-    }
-
-
+    private final RiskAnalysisService analysisService;
     
-    @GetMapping("/getid_analysis/{id}")
-    public RiskAnalysisResult get_AnalysisById(@PathVariable Long id){
-        return ser.getAnalysisById(id);
-    }
-    @GetMapping("/getall_analysis/portfolio/{portfolioId}")
-    public List<RiskAnalysisResult>get_AnalysesForPortfolio(){
-        return ser.getAnalysesForPortfolio();
+    public RiskAnalysisController(RiskAnalysisService analysisService) {
+        this.analysisService = analysisService;
     }
     
-
+    @PostMapping("/{portfolioId}")
+    public RiskAnalysisResult analyzePortfolio(@PathVariable Long portfolioId, @RequestBody RiskAnalysisResult analysisRequest) {
+        return analysisService.analyzePortfolio(portfolioId, analysisRequest);
+    }
+    
+    @GetMapping("/{portfolioId}")
+    public List<RiskAnalysisResult> getAnalysesForPortfolio(@PathVariable Long portfolioId) {
+        return analysisService.getAnalysesForPortfolio(portfolioId);
+    }
+    
+    @GetMapping("/result/{id}")
+    public RiskAnalysisResult getAnalysisById(@PathVariable Long id) {
+        return analysisService.getAnalysisById(id);
+    }
 }

@@ -10,36 +10,25 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.RiskThreshold;
 import com.example.demo.service.RiskThresholdService;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
-public class RiskThresholdController
-{
+@RequestMapping("/api/risk-thresholds")
+public class RiskThresholdController {
     
-     private final RiskThresholdService ser;
+    private final RiskThresholdService thresholdService;
     
-    public RiskThresholdController(RiskThresholdService ser) {
-        this.ser = ser;
-    }
-    @PostMapping("/Post_RiskThreshold")
-    public RiskThreshold create_Threshold(@RequestBody RiskThreshold threshold){
-        return ser.createThreshold(threshold);
-    }
-    @PutMapping("/Put_RiskThreshold/{id}")
-    public RiskThreshold update_Threshold(@PathVariable Long id,@RequestBody RiskThreshold model){
-        return ser.updateThreshold(id,model);
-    }
-    @GetMapping("/active")
-    public List<RiskThreshold> get_ActiveThreshold(){
-        return ser.getActiveThreshold();
-    }
-    @GetMapping("/getid_RiskThreshold/{id}")
-    public RiskThreshold get_ThresholdById(@PathVariable Long id){
-        return ser.getThresholdById(id);
-    }
-    @GetMapping("/getall_RiskThreshold")
-    public List<RiskThreshold>get_AllThresholds(){
-        return ser.getAllThresholds();
+    public RiskThresholdController(RiskThresholdService thresholdService) {
+        this.thresholdService = thresholdService;
     }
     
-
+    @PostMapping("/{portfolioId}")
+    public RiskThreshold setThreshold(@PathVariable Long portfolioId, @RequestBody RiskThreshold threshold) {
+        return thresholdService.setThreshold(portfolioId, threshold);
+    }
+    
+    @GetMapping("/{portfolioId}")
+    public RiskThreshold getThreshold(@PathVariable Long portfolioId) {
+        return thresholdService.getThresholdForPortfolio(portfolioId);
+    }
 }

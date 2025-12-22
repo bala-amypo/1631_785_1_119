@@ -13,27 +13,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
-
-    private final UserService service;
-
-    public AuthController(UserService service) {
-        this.service = service;
+    
+    private final UserService userService;
+    
+    public AuthController(UserService userService) {
+        this.userService = userService;
     }
-
+    
     @PostMapping("/register")
-    public User register(@RequestBody User user) {
-        return service.register(user);
+    public User registerUser(@RequestBody User user) {
+        return userService.registerUser(user);
     }
-
+    
     @PostMapping("/login")
-    public String login(@RequestBody User user) {
-        User existing = service.findByEmail(user.getEmail());
-        if (existing == null) {
-            return "Invalid email";
+    public User loginUser(@RequestBody User user) {
+        User foundUser = userService.findByEmail(user.getEmail());
+        
+        if(!foundUser.getPassword().equals(user.getPassword())) {
+            throw new IllegalArgumentException("Invalid credentials");
         }
-        if (!existing.getPassword().equals(user.getPassword())) {
-            return "Invalid password";
-        }
-        return "Login successful";
+        
+        return foundUser;
     }
 }
