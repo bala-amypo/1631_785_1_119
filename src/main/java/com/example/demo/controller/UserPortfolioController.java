@@ -10,35 +10,30 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.UserPortfolio;
 import com.example.demo.service.UserPortfolioService;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
-public class UserPortfolioController
-{
-    private final UserPortfolioService ser;
+@RequestMapping("/api/portfolios")
+public class UserPortfolioController {
     
-    public UserPortfolioController(UserPortfolioService ser) {
-        this.ser = ser;
+    private final UserPortfolioService portfolioService;
+    
+    public UserPortfolioController(UserPortfolioService portfolioService) {
+        this.portfolioService = portfolioService;
     }
-    @PostMapping("/Post_UserPortfolio")
-    public UserPortfolio create_Portfolio(@RequestBody UserPortfolio portfolio){
-        return ser.createPortfolio(portfolio);
+    
+    @PostMapping
+    public UserPortfolio createPortfolio(@RequestBody UserPortfolio portfolio) {
+        return portfolioService.createPortfolio(portfolio);
     }
-    @PutMapping("/Put_UserPortfolio_/{id}")
-    public UserPortfolio update_Portfolio(@PathVariable Long id,@RequestBody UserPortfolio model){
-        return ser.updatePortfolio(id,model);
+    
+    @GetMapping("/{id}")
+    public UserPortfolio getPortfolio(@PathVariable Long id) {
+        return portfolioService.getPortfolioById(id);
     }
-    @GetMapping("/getid_UserPortfolio/{id}")
-    public UserPortfolio get_PortfolioById(@PathVariable Long id){
-        return ser.getPortfolioById(id);
+    
+    @GetMapping("/user/{userId}")
+    public List<UserPortfolio> getPortfoliosByUser(@PathVariable Long userId) {
+        return portfolioService.getPortfoliosByUser(userId);
     }
-    @GetMapping("/getall_UserPortfolio/user/{userId}")
-    public List<UserPortfolio> get_PortfoliosByUser(){
-        return ser.getPortfoliosByUser();
-    }
-    @DeleteMapping("/delete_UserPortfolio/{id}")
-    public String deactivate_Portfolio(@PathVariable Long id){
-        return ser.deactivatePortfolio(id);
-
-    }
-
 }

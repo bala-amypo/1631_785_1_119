@@ -10,7 +10,7 @@ import com.example.demo.model.Stock;
 import com.example.demo.service.StockService;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.http.ResponseEntity;
+// import org.springframework.http.ResponseEntity;
 
 @RestController
 @RequestMapping("/api/stocks")
@@ -23,28 +23,27 @@ public class StockController {
     }
     
     @PostMapping
-    public ResponseEntity<Stock> createStock(@RequestBody Stock stock) {
-        return ResponseEntity.ok(stockService.createStock(stock));
+    public Stock createStock(@RequestBody Stock stock) {
+        return stockService.createStock(stock);
     }
     
     @PutMapping("/{id}")
-    public ResponseEntity<Stock> updateStock(@PathVariable Long id, @RequestBody Stock stock) {
-        return ResponseEntity.ok(stockService.updateStock(id, stock));
+    public Stock updateStock(@PathVariable Long id, @RequestBody Stock stock) {
+        return stockService.updateStock(id, stock);
     }
     
     @GetMapping("/{id}")
-    public ResponseEntity<Stock> getStock(@PathVariable Long id) {
-        return ResponseEntity.ok(stockService.getStockById(id));
+    public Stock getStock(@PathVariable Long id) {
+        return stockService.getStockById(id);
     }
     
     @GetMapping
-    public ResponseEntity<List<Stock>> getAllStocks() {
-        return ResponseEntity.ok(stockService.getAllStocks());
+    public List<Stock> getAllStocks() {
+        return stockService.getAllStocks();
     }
     
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deactivateStock(@PathVariable Long id) {
+    public void deactivateStock(@PathVariable Long id) {
         stockService.deactivateStock(id);
-        return ResponseEntity.ok().build();
     }
 }
