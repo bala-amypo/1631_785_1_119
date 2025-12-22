@@ -8,42 +8,52 @@ import com.example.demo.repository.StockRepository;
 import com.example.demo.exception.ResourceNotFoundException;
 
 @Service
-public class StockServiceImpl implements StockService{
+public class StockServiceImpl implements StockService {
     
-    private final StockRepository stocks;
+    private final StockRepository stockRepository;
     
-    public StockServiceImpl(StockRepository stocks) {
-        this.stocks = stocks;
+    public StockServiceImpl(StockRepository stockRepository) {
+        this.stockRepository = stockRepository;
     }
+    
     @Override
-    public Stock createStock(Stock stock){
-        return stocks.save(stock);
-    }
-    @Override
-   public Stock updateStock(Long id,Stock stock){
-        if(stocks.existsById(id)){
-            stock.setId(id);
-            return stocks.save(stock);
+    public Stock createStock(Stock stock) {
+        if(stockRepository.findByTicker(stock.getTicker()).isPresent()) {
+            throw new RuntimeException("Duplicate ticker");
         }
-        return null;
-   }
-    
-   @Override
-   public Stock getStockById(Long id){
-        return stocks.findById(id).orElseThrow(()->new ResourceNotFoundException("Stock Not found"));
-
-   }
-    @Override
-   public List<Stock>getAllStocks(){
-        return stocks.findAll();
-
-   }
-   @Override
-    public String deactivateStock(Long id){
-        stocks.deleteById(id);
-        return "delete successfully";
-
+        return stockRepository.save(stock);
     }
-
-
+    
+    @Override
+    public Stock updateStock(Long id, Stock stock) {
+        Stock existingStock = stockRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Not found"));
+        
+        existingStock.setTicker(stock.getTicker());
+        existingStock.setCompanyName(stock.getCompanyName());
+        existingStock.setSector(stock.getSector());
+        existingStock.setIsActive(stock.getIsActive());
+        
+        return stockRepository.save(existingStock);
+    }
+    
+    @Override
+    public Stock getStockById(Long id) {
+        return stockRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Not found"));
+    }
+    
+    @Override
+    public List<Stock> getAllStocks() {
+        return stockRepository.findAll();
+    }
+    
+    @Override
+    public void deactivateStock(Long id) {
+        Stock stock = stockRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Not found"));
+        
+        stock.setIsActive(false);
+        stockRepository.save(stock);
+    }
 }
