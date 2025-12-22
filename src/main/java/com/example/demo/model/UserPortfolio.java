@@ -11,7 +11,9 @@ import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
-
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
+import jakarta.validation.constraints.NotNull;
 @Entity
 @Data
 @AllArgsConstructor
