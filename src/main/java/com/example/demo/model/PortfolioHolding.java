@@ -28,7 +28,7 @@ public class PortfolioHolding {
     
     private UserPortfolio portfolio;
     private Stock stock;
-}
+
     @PrePersist
     public void Oncreated() {
         
@@ -37,5 +37,6 @@ public class PortfolioHolding {
             this.lastUpdated = last;
         }
     }
-    
 }
+    
+    

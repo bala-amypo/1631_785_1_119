@@ -22,6 +22,8 @@ public class UserPortfolio {
     private Long userId;
     private String portfolioName;
     private boolean isActive;
+    private LocalDateTime createdAt;
+    
 
     @PrePersist
     public void Oncreate(){
