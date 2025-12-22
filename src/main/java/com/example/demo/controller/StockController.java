@@ -1,44 +1,42 @@
 package com.example.demo.controller;
 
 import java.util.List;
-
 import org.springframework.web.bind.annotation.*;
-
-import com.example.demo.model.PortfolioHolding;
-import com.example.demo.service.PortfolioHoldingService;
+import com.example.demo.model.Stock;
+import com.example.demo.service.StockService;
 
 @RestController
-@RequestMapping("/api/holdings")
-public class PortfolioHoldingController {
+@RequestMapping("/api/stocks")
+public class StockController {
 
-    private final PortfolioHoldingService holdingService;
+    private final StockService stockService;
 
-    public PortfolioHoldingController(PortfolioHoldingService holdingService) {
-        this.holdingService = holdingService;
+    public StockController(StockService stockService) {
+        this.stockService = stockService;
     }
 
     @PostMapping
-    public PortfolioHolding createHolding(@RequestBody PortfolioHolding holding) {
-        return holdingService.createHolding(holding);
+    public Stock createStock(@RequestBody Stock stock) {
+        return stockService.createStock(stock);
     }
 
     @PutMapping("/{id}")
-    public PortfolioHolding updateHolding(@PathVariable Long id, @RequestBody PortfolioHolding holding) {
-        return holdingService.updateHolding(id, holding);
+    public Stock updateStock(@PathVariable Long id, @RequestBody Stock stock) {
+        return stockService.updateStock(id, stock);
     }
 
     @GetMapping("/{id}")
-    public PortfolioHolding getHolding(@PathVariable Long id) {
-        return holdingService.getHoldingById(id);
+    public Stock getStock(@PathVariable Long id) {
+        return stockService.getStockById(id);
     }
 
     @GetMapping
-    public List<PortfolioHolding> getAllHoldings() {
-        return holdingService.getHoldingsByPortfolio();
+    public List<Stock> getAllStocks() {
+        return stockService.getAllStocks();
     }
 
     @DeleteMapping("/{id}")
-    public String deleteHolding(@PathVariable Long id) {
-        return holdingService.deleteHolding(id);
+    public String deactivateStock(@PathVariable Long id) {
+        return stockService.deactivateStock(id);
     }
 }

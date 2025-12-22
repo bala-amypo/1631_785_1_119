@@ -19,7 +19,7 @@ import jakarta.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "user_portfolios")
-public class UserPortfolio {
+public class UserPortfolio{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
