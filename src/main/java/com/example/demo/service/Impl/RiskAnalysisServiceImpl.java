@@ -5,6 +5,7 @@ import com.example.demo.model.RiskAnalysisResult;
 import com.example.demo.service.RiskAnalysisService; 
 import com.example.demo.repository.RiskAnalysisResultRepository; 
 import com.example.demo.exception.ResourceNotFoundException;
+import java.time.LocalDateTime;
 @Service
 public class RiskAnalysisServiceImpl implements RiskAnalysisService {
 
@@ -16,7 +17,6 @@ public class RiskAnalysisServiceImpl implements RiskAnalysisService {
 
     @Override
     public RiskAnalysisResult analyzePortfolio(RiskAnalysisResult analysis) {
-        // Automatically sets analysis date if not provided
         if (analysis.getAnalysis() == null) {
             analysis.setAnalysis(LocalDateTime.now());
         }
