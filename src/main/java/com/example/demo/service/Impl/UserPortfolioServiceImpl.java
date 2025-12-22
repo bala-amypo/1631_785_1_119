@@ -25,7 +25,7 @@ public class UserPortfolioServiceImpl implements UserPortfolioService {
             .orElseThrow(() -> new ResourceNotFoundException("Portfolio not found"));
 
         existing.setPortfolioName(portfolio.getPortfolioName());
-        existing.setIsActive(portfolio.isIsActive());
+        existing.setActive(portfolio.isActive());
         existing.setUser(portfolio.getUser());
 
         return portFolioRepository.save(existing);
@@ -47,7 +47,7 @@ public class UserPortfolioServiceImpl implements UserPortfolioService {
         UserPortfolio portfolio = portFolioRepository.findById(id)
             .orElseThrow(() -> new ResourceNotFoundException("Portfolio not found"));
 
-        portfolio.setIsActive(false);
+        portfolio.setActive(false);
         portFolioRepository.save(portfolio);
         return "Portfolio deactivated successfully";
     }

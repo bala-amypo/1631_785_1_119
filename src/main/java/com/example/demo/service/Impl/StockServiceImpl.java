@@ -30,7 +30,7 @@ public class StockServiceImpl implements StockService {
         existingStock.setTicker(stock.getTicker());
         existingStock.setCompanyName(stock.getCompanyName());
         existingStock.setSector(stock.getSector());
-        existingStock.setIsActive(stock.getIsActive());
+        existingStock.setActive(stock.isActive());
 
         return stockRepository.save(existingStock);
     }
@@ -51,7 +51,7 @@ public class StockServiceImpl implements StockService {
         Stock stock = stockRepository.findById(id)
             .orElseThrow(() -> new ResourceNotFoundException("Stock not found"));
 
-        stock.setIsActive(false);
+        stock.setActive(false);
         stockRepository.save(stock);
 
         return "Stock deactivated successfully";

@@ -17,8 +17,8 @@ public class RiskAnalysisServiceImpl implements RiskAnalysisService {
 
     @Override
     public RiskAnalysisResult analyzePortfolio(RiskAnalysisResult analysis) {
-        if (analysis.getAnalysis() == null) {
-            analysis.setAnalysis(LocalDateTime.now());
+        if (analysis.getAnalysisDate() == null) {
+            analysis.setAnalysisDate(LocalDateTime.now());
         }
         return resultRepository.save(analysis);
     }
