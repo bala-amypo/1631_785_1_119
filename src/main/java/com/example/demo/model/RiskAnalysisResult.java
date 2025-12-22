@@ -1,42 +1,43 @@
 package com.example.demo.model;
+
 import jakarta.persistence.Entity;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.validation.constraints.NotNull;
-
-import java.time.LocalDateTime;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
+import jakarta.validation.constraints.NotNull;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+
+import java.time.LocalDateTime;
+
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+public class RiskAnalysisResult {
 
-public class RiskAnalysisResult{
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
-    private Long portfolioId;
-    private LocalDateTime analysis;
+
+    private LocalDateTime analysisDate;
     private Double highestStockPercentage;
     private Double highestSectorPercentage;
-    private boolean isHighRisk;
+    private boolean highRisk;
     private String notes;
-    @ManyToOne     
-    @JoinColumn(name = "portfolio_id")
+
+    @ManyToOne
+    @JoinColumn(name = "portfolio_id", nullable = false)
     private UserPortfolio portfolio;
+
     @PrePersist
-    public void Onrecord(){
-        if(this.analysis == null){
-            LocalDateTime resulted= LocalDateTime.now();
-            this.analysis=resulted;
+    public void onRecord() {
+        if (this.analysisDate == null) {
+            this.analysisDate = LocalDateTime.now();
         }
     }
-
 }

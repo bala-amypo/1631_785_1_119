@@ -24,6 +24,7 @@ public class RiskThreshold{
     private Double maxSingleStockPercentage;
     private Double maxSectorPercentage;
     // private Double maxOverallVolatility;
+    @NotNull
     private boolean active;
 
 }
