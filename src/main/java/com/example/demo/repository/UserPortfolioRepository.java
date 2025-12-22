@@ -8,5 +8,5 @@ import java.util.List;
 @Repository
 public interface UserPortfolioRepository extends JpaRepository<UserPortfolio, Long> {
 
-    List<UserPortfolio> findByUser_Id(Long userId);
+    List<UserPortfolio> findByUserId(Long userId);
 }
