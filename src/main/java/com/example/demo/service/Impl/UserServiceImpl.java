@@ -18,14 +18,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User register(User user) {
-        if (user.getRole() == null) {
-            user.setRole("MONITOR");
-        }
-        if (userRepository.findByEmail(user.getEmail()) != null) {
-            throw new RuntimeException("Email already registered");
-        }
-        return userRepository.save(user);
+    if (user.getRole() == null) {
+        user.setRole("MONITOR");   
     }
+    if (userRepository.findByEmail(user.getEmail()) != null) {
+        throw new RuntimeException("Email already registered");
+    }
+    return userRepository.save(user);
+}
+
 
     @Override
     public User findByEmail(String email) {
