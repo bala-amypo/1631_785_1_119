@@ -13,18 +13,21 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            .csrf().disable() // Optional: disable CSRF for simplicity, safe for tests
+            .csrf().disable() // safe for Swagger and testing
             .authorizeHttpRequests()
-                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").authenticated() // secure Swagger
-                .anyRequest().authenticated() // all endpoints require auth
+                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").authenticated() // protect Swagger
+                .anyRequest().authenticated() // protect all endpoints
             .and()
-            .httpBasic(); // enable browser-based basic auth
+            .formLogin() // show modern Spring login page
+                .defaultSuccessUrl("/swagger-ui/index.html", true) // redirect to Swagger after login
+            .and()
+            .httpBasic(); // still allow basic auth for API clients / tests
 
         return http.build();
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(); 
+        return new BCryptPasswordEncoder();
     }
 }
