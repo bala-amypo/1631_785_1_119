@@ -16,17 +16,14 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
 
+   
     @Override
     public User register(User user) {
-        if (user.getRole() == null) {
-            user.setRole("MONITOR");
-        }
-        if (userRepository.findByEmail(user.getEmail()) != null) {
+        if (userRepository.findByEmail(user.getEmail()) != null)
             throw new RuntimeException("Email already registered");
-        }
+        if (user.getRole() == null) user.setRole("MONITOR");
         return userRepository.save(user);
     }
-
     @Override
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
