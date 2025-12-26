@@ -37,7 +37,7 @@ public class User {
     @NotNull
     private String password;
     
-    private String role="MONITOR";
+    private String role = "MONITOR";
     
     private LocalDateTime createdAt;
     
@@ -45,6 +45,9 @@ public class User {
     public void onCreate() {
         if (this.createdAt == null) {
             this.createdAt = LocalDateTime.now();
+        }
+         if (this.role == null) {
+            this.role = "MONITOR"; 
         }
         
     }
