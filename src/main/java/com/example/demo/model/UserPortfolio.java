@@ -14,24 +14,36 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.validation.constraints.NotNull;
+
+
+
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-// @Table(name = "user_portfolios")
-public class UserPortfolio{
+public class UserPortfolio {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
     private String portfolioName;
     private boolean active;
+
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    @PrePersist
+    @OneToMany(mappedBy = "portfolio", cascade = CascadeType.ALL)
+    private List<PortfolioHolding> holdings;
+
+    @OneToMany(mappedBy = "portfolio", cascade = CascadeType.ALL)
+    private List<RiskAnalysisResult> riskAnalyses;
+
+     @PrePersist
     public void onCreate() {
         LocalDateTime now = LocalDateTime.now();
         if (this.createdAt == null) {
