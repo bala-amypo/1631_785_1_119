@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
             user.setRole("MONITOR");
         }
         if (userRepository.findByEmail(user.getEmail()) != null) {
-            throw new RuntimeException("Email already registered");
+            throw new ResourceNotFoundException("Email already registered");
         }
         return userRepository.save(user);
     }
