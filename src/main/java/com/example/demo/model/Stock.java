@@ -24,5 +24,6 @@ public class Stock{
     private String companyName;
     private String sector;
     private boolean isActive;
-
+    @OneToMany(mappedBy = "stock", cascade = CascadeType.ALL)
+    private List<PortfolioHolding> holdings;
 }
