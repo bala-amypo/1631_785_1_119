@@ -16,8 +16,8 @@ import jakarta.persistence.PreUpdate;
 import jakarta.validation.constraints.NotNull;
 
 
-
 @Entity
+@Table(name = "user_portfolios")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -42,8 +42,7 @@ public class UserPortfolio {
 
     @OneToMany(mappedBy = "portfolio", cascade = CascadeType.ALL)
     private List<RiskAnalysisResult> riskAnalyses;
-
-     @PrePersist
+    @PrePersist
     public void onCreate() {
         LocalDateTime now = LocalDateTime.now();
         if (this.createdAt == null) {
@@ -56,4 +55,5 @@ public class UserPortfolio {
     public void onUpdate() {
         this.updatedAt = LocalDateTime.now();
     }
+   
 }
