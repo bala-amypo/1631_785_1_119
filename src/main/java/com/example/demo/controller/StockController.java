@@ -36,7 +36,7 @@ public class StockController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deactivateStock(@PathVariable Long id) {
+    public ResponseEntity<String> deactivateStock(@PathVariable Long id) {
         stockService.deactivateStock(id);
         return ResponseEntity.ok().build();
     }

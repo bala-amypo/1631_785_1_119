@@ -6,5 +6,5 @@ public interface StockService{
     Stock updateStock(Long id,Stock stock);
     Stock getStockById(Long id);
     List<Stock>getAllStocks();
-    void deactivateStock(Long id);
+    String deactivateStock(Long id);
 }
