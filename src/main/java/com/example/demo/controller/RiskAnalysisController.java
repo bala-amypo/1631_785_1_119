@@ -17,14 +17,12 @@ public class RiskAnalysisController {
     }
 
     @PostMapping
-    public ResponseEntity<RiskAnalysisResult> analyzePortfolio(
-            @RequestBody RiskAnalysisResult analysisRequest) {
+    public ResponseEntity<RiskAnalysisResult> analyzePortfolio(@RequestBody RiskAnalysisResult analysisRequest) {
         return ResponseEntity.ok(analysisService.analyzePortfolio(analysisRequest));
     }
 
     @GetMapping("/portfolio/{portfolioId}")
-    public ResponseEntity<List<RiskAnalysisResult>> getAnalysesForPortfolio(
-            @PathVariable Long portfolioId) {
+    public ResponseEntity<List<RiskAnalysisResult>> getAnalysesForPortfolio(@PathVariable Long portfolioId) {
         return ResponseEntity.ok(analysisService.getAnalysesForPortfolio(portfolioId));
     }
 

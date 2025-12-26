@@ -33,8 +33,7 @@ public class UserPortfolioController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserPortfolio> updatePortfolio(@PathVariable Long id,
-                                                         @RequestBody UserPortfolio portfolio) {
+    public ResponseEntity<UserPortfolio> updatePortfolio(@PathVariable Long id,@RequestBody UserPortfolio portfolio) {
         return ResponseEntity.ok(portfolioService.updatePortfolio(id, portfolio));
     }
 

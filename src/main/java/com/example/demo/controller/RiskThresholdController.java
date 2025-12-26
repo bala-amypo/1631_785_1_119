@@ -22,8 +22,7 @@ public class RiskThresholdController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<RiskThreshold> updateThreshold(@PathVariable Long id,
-                                                         @RequestBody RiskThreshold threshold) {
+    public ResponseEntity<RiskThreshold> updateThreshold(@PathVariable Long id,@RequestBody RiskThreshold threshold) {
         return ResponseEntity.ok(thresholdService.updateThreshold(id, threshold));
     }
 

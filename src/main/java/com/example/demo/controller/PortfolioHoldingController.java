@@ -22,8 +22,7 @@ public class PortfolioHoldingController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PortfolioHolding> updateHolding(@PathVariable Long id,
-                                                          @RequestBody PortfolioHolding holding) {
+    public ResponseEntity<PortfolioHolding> updateHolding(@PathVariable Long id,@RequestBody PortfolioHolding holding) {
         return ResponseEntity.ok(holdingService.updateHolding(id, holding));
     }
 
@@ -33,8 +32,7 @@ public class PortfolioHoldingController {
     }
 
     @GetMapping("/portfolio/{portfolioId}")
-    public ResponseEntity<List<PortfolioHolding>> getHoldingsByPortfolio(
-            @PathVariable Long portfolioId) {
+    public ResponseEntity<List<PortfolioHolding>> getHoldingsByPortfolio(@PathVariable Long portfolioId) {
         return ResponseEntity.ok(holdingService.getHoldingsByPortfolio(portfolioId));
     }
 
