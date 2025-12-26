@@ -17,16 +17,16 @@ public class RiskAnalysisServiceImpl implements RiskAnalysisService {
 
     @Override
     public RiskAnalysisResult analyzePortfolio(RiskAnalysisResult analysis) {
-        if (analysis.getAnalysisDate() == null) {
-            analysis.setAnalysisDate(LocalDateTime.now());
+        if (analysis.getAnalysisTime() == null) {
+            analysis.setAnalysisTime(LocalDateTime.now());
         }
         return resultRepository.save(analysis);
     }
 
+
     @Override
     public RiskAnalysisResult getAnalysisById(Long id) {
-        return resultRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Portfolio analysis not found"));
+        return resultRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Portfolio analysis not found"));
     }
 
     @Override
