@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.model.PortfolioHolding;
 import com.example.demo.service.PortfolioHoldingService;
-
 @RestController
 @RequestMapping("/api/holdings")
 public class PortfolioHoldingController {
@@ -18,27 +17,30 @@ public class PortfolioHoldingController {
     }
 
     @PostMapping
-    public PortfolioHolding createHolding(@RequestBody PortfolioHolding holding) {
-        return holdingService.createHolding(holding);
+    public ResponseEntity<PortfolioHolding> createHolding(@RequestBody PortfolioHolding holding) {
+        return ResponseEntity.ok(holdingService.createHolding(holding));
     }
 
     @PutMapping("/{id}")
-    public PortfolioHolding updateHolding(@PathVariable Long id, @RequestBody PortfolioHolding holding) {
-        return holdingService.updateHolding(id, holding);
+    public ResponseEntity<PortfolioHolding> updateHolding(@PathVariable Long id,
+                                                          @RequestBody PortfolioHolding holding) {
+        return ResponseEntity.ok(holdingService.updateHolding(id, holding));
     }
 
     @GetMapping("/{id}")
-    public PortfolioHolding getHolding(@PathVariable Long id) {
-        return holdingService.getHoldingById(id);
+    public ResponseEntity<PortfolioHolding> getHolding(@PathVariable Long id) {
+        return ResponseEntity.ok(holdingService.getHoldingById(id));
     }
 
     @GetMapping("/portfolio/{portfolioId}")
-    public List<PortfolioHolding> getHoldingsByPortfolio(@PathVariable Long portfolioId) {
-        return holdingService.getHoldingsByPortfolio(portfolioId);
+    public ResponseEntity<List<PortfolioHolding>> getHoldingsByPortfolio(
+            @PathVariable Long portfolioId) {
+        return ResponseEntity.ok(holdingService.getHoldingsByPortfolio(portfolioId));
     }
 
     @DeleteMapping("/{id}")
-    public String deleteHolding(@PathVariable Long id) {
-        return holdingService.deleteHolding(id);
+    public ResponseEntity<Void> deleteHolding(@PathVariable Long id) {
+        holdingService.deleteHolding(id);
+        return ResponseEntity.ok().build();
     }
 }

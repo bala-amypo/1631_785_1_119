@@ -4,7 +4,6 @@ import java.util.List;
 import org.springframework.web.bind.annotation.*;
 import com.example.demo.model.Stock;
 import com.example.demo.service.StockService;
-
 @RestController
 @RequestMapping("/api/stocks")
 public class StockController {
@@ -16,27 +15,29 @@ public class StockController {
     }
 
     @PostMapping
-    public Stock createStock(@RequestBody Stock stock) {
-        return stockService.createStock(stock);
+    public ResponseEntity<Stock> createStock(@RequestBody Stock stock) {
+        return ResponseEntity.ok(stockService.createStock(stock));
     }
 
     @PutMapping("/{id}")
-    public Stock updateStock(@PathVariable Long id, @RequestBody Stock stock) {
-        return stockService.updateStock(id, stock);
+    public ResponseEntity<Stock> updateStock(@PathVariable Long id,
+                                             @RequestBody Stock stock) {
+        return ResponseEntity.ok(stockService.updateStock(id, stock));
     }
 
     @GetMapping("/{id}")
-    public Stock getStock(@PathVariable Long id) {
-        return stockService.getStockById(id);
+    public ResponseEntity<Stock> getStock(@PathVariable Long id) {
+        return ResponseEntity.ok(stockService.getStockById(id));
     }
 
     @GetMapping
-    public List<Stock> getAllStocks() {
-        return stockService.getAllStocks();
+    public ResponseEntity<List<Stock>> getAllStocks() {
+        return ResponseEntity.ok(stockService.getAllStocks());
     }
 
     @DeleteMapping("/{id}")
-    public String deactivateStock(@PathVariable Long id) {
-        return stockService.deactivateStock(id);
+    public ResponseEntity<Void> deactivateStock(@PathVariable Long id) {
+        stockService.deactivateStock(id);
+        return ResponseEntity.ok().build();
     }
 }

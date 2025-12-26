@@ -18,27 +18,31 @@ public class UserPortfolioController {
     }
 
     @PostMapping
-    public UserPortfolio createPortfolio(@RequestBody UserPortfolio portfolio) {
-        return portfolioService.createPortfolio(portfolio);
+    public ResponseEntity<UserPortfolio> createPortfolio(@RequestBody UserPortfolio portfolio) {
+        return ResponseEntity.ok(portfolioService.createPortfolio(portfolio));
     }
 
     @GetMapping("/{id}")
-    public UserPortfolio getPortfolio(@PathVariable Long id) {
-        return portfolioService.getPortfolioById(id);
+    public ResponseEntity<UserPortfolio> getPortfolio(@PathVariable Long id) {
+        return ResponseEntity.ok(portfolioService.getPortfolioById(id));
     }
 
     @GetMapping("/user/{userId}")
-    public List<UserPortfolio> getPortfoliosByUser(@PathVariable Long userId) {
-        return portfolioService.getPortfoliosByUser(userId);
+    public ResponseEntity<List<UserPortfolio>> getPortfoliosByUser(@PathVariable Long userId) {
+        return ResponseEntity.ok(portfolioService.getPortfoliosByUser(userId));
     }
 
     @PutMapping("/{id}")
-    public UserPortfolio updatePortfolio(@PathVariable Long id, @RequestBody UserPortfolio portfolio) {
-        return portfolioService.updatePortfolio(id, portfolio);
+    public ResponseEntity<UserPortfolio> updatePortfolio(@PathVariable Long id,
+                                                         @RequestBody UserPortfolio portfolio) {
+        return ResponseEntity.ok(portfolioService.updatePortfolio(id, portfolio));
     }
 
     @DeleteMapping("/{id}")
-    public String deactivatePortfolio(@PathVariable Long id) {
-        return portfolioService.deactivatePortfolio(id);
+    public ResponseEntity<Void> deactivatePortfolio(@PathVariable Long id) {
+        portfolioService.deactivatePortfolio(id);
+        return ResponseEntity.ok().build();
     }
 }
+
+

@@ -4,7 +4,6 @@ import com.example.demo.model.User;
 import com.example.demo.service.UserService;
 
 import org.springframework.web.bind.annotation.*;
-
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -16,19 +15,18 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public User registerUser(@RequestBody User user) {
-    return userService.register(user);
+    public ResponseEntity<User> registerUser(@RequestBody User user) {
+        return ResponseEntity.ok(userService.register(user));
     }
 
     @PostMapping("/login")
-    public User loginUser(@RequestBody User user) {
+    public ResponseEntity<User> loginUser(@RequestBody User user) {
         User foundUser = userService.findByEmail(user.getEmail());
 
         if (foundUser == null || !foundUser.getPassword().equals(user.getPassword())) {
             throw new IllegalArgumentException("Invalid credentials");
         }
 
-        return foundUser;
+        return ResponseEntity.ok(foundUser);
     }
-
 }
