@@ -35,9 +35,11 @@ public class StockController {
         return ResponseEntity.ok(stockService.getAllStocks());
     }
 
+   
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deactivateStock(@PathVariable Long id) {
-        stockService.deactivateStock(id);
-        return ResponseEntity.ok().build();
-    }
+public ResponseEntity<Void> deactivateStock(@PathVariable Long id) {
+    stockService.deactivateStock(id);
+    return ResponseEntity.ok().build();   // ✅ matches test
+}
+
 }
