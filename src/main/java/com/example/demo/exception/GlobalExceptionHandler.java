@@ -11,4 +11,8 @@ public class GlobalExceptionHandler{
         return new ResponseEntity<String>(ex.getMessage(),HttpStatus.BAD_GATEWAY);
 
     }
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<String> handleIllegalArgument(IllegalArgumentException ex){
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.UNAUTHORIZED);
+    }
 }
