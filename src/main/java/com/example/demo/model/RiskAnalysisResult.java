@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
-
 @Entity
 @Data
 @AllArgsConstructor
@@ -25,7 +24,7 @@ public class RiskAnalysisResult {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDateTime analysisDate;
+    private LocalDateTime analysisTime;
     private Double highestStockPercentage;
     private Double highestSectorPercentage;
     private boolean highRisk;
@@ -37,8 +36,8 @@ public class RiskAnalysisResult {
 
     @PrePersist
     public void onRecord() {
-        if (this.analysisDate == null) {
-            this.analysisDate = LocalDateTime.now();
+        if (this.analysisTime == null) {
+            this.analysisTime = LocalDateTime.now();
         }
     }
 }
