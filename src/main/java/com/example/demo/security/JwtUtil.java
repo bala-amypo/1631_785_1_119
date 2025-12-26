@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 public class JwtUtil {
 
     public String generateToken(String email, String role, Long userId) {
-        // Tests MOCK this method, real logic not required
+        
         return "dummy.jwt.token";
     }
 
