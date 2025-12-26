@@ -3,8 +3,11 @@ package com.example.demo.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -15,15 +18,25 @@ public class SecurityConfig {
         http
             .csrf().disable() // safe for Swagger and testing
             .authorizeHttpRequests()
-                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").authenticated() // protect Swagger
-                .anyRequest().authenticated() // protect all endpoints
+                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").authenticated()
+                .anyRequest().authenticated()
             .and()
-            .formLogin() // show modern Spring login page
-                .defaultSuccessUrl("/swagger-ui/index.html", true) // redirect to Swagger after login
+            .formLogin()
+                .defaultSuccessUrl("/swagger-ui/index.html", true)
             .and()
-            .httpBasic(); // still allow basic auth for API clients / tests
+            .httpBasic(); // allow API clients to use basic auth
 
         return http.build();
+    }
+
+    @Bean
+    public InMemoryUserDetailsManager userDetailsService(PasswordEncoder passwordEncoder) {
+        UserDetails user = User.builder()
+                .username("mitra")
+                .password(passwordEncoder.encode("0226")) // BCrypt encoded password
+                .roles("USER")
+                .build();
+        return new InMemoryUserDetailsManager(user);
     }
 
     @Bean
