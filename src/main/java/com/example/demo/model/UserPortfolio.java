@@ -27,7 +27,7 @@ public class UserPortfolio{
     @JoinColumn(name = "user_id")
     private User user;
     private String portfolioName;
-    private boolean isActive;
+    private boolean active;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
