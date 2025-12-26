@@ -47,7 +47,7 @@ public class StockServiceImpl implements StockService {
     }
 
     @Override
-    public String deactivateStock(Long id) {
+    public void deactivateStock(Long id) {
         Stock stock = stockRepository.findById(id)
             .orElseThrow(() -> new ResourceNotFoundException("Stock not found"));
 
