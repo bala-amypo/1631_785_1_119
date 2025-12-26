@@ -19,14 +19,14 @@ public class AuthController {
         return ResponseEntity.ok(userService.register(user));
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<User> loginUser(@RequestBody User user) {
-        User foundUser = userService.findByEmail(user.getEmail());
+   @PostMapping("/login")
+public ResponseEntity<?> loginUser(@RequestBody User user) {
+    User foundUser = userService.findByEmail(user.getEmail());
 
-        if (foundUser == null || !foundUser.getPassword().equals(user.getPassword())) {
-            throw new IllegalArgumentException("Invalid credentials");
-        }
-
-        return ResponseEntity.ok("Login successful");
+    if (foundUser == null || !foundUser.getPassword().equals(user.getPassword())) {
+        throw new IllegalArgumentException("Invalid credentials");
     }
+
+    return ResponseEntity.ok("Login successful");
+}
 }
