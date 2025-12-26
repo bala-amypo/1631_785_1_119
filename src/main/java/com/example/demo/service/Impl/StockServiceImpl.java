@@ -47,13 +47,12 @@ public class StockServiceImpl implements StockService {
     }
 
     @Override
-    public String deactivateStock(Long id) {
-        Stock stock = stockRepository.findById(id)
-            .orElseThrow(() -> new ResourceNotFoundException("Stock not found"));
+public void deactivateStock(Long id) {   // ✅ void
+    Stock stock = stockRepository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("Stock not found"));
 
-        stock.setActive(false);
-        stockRepository.save(stock);
+    stock.setActive(false);
+    stockRepository.save(stock);
+}
 
-        return "Stock deactivated successfully";
-    }
 }
