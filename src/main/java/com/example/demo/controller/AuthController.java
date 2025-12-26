@@ -27,6 +27,6 @@ public class AuthController {
             throw new IllegalArgumentException("Invalid credentials");
         }
 
-        return ResponseEntity.ok(foundUser);
+        return ResponseEntity.ok("Login successful");
     }
 }
