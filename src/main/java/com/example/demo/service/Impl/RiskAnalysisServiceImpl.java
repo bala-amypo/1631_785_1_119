@@ -6,7 +6,7 @@ import com.example.demo.service.RiskAnalysisService;
 import com.example.demo.repository.RiskAnalysisResultRepository; 
 import com.example.demo.exception.ResourceNotFoundException;
 import java.time.LocalDateTime;
-import java.sql.Timestamp;
+
 @Service
 public class RiskAnalysisServiceImpl implements RiskAnalysisService {
 

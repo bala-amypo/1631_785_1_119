@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
+import java.sql.Timestamp;
 @Entity
 @Data
 @AllArgsConstructor
@@ -39,5 +40,17 @@ public class RiskAnalysisResult {
         if (this.analysisTime == null) {
             this.analysisTime = LocalDateTime.now();
         }
+    }
+
+    public void setAnalysisDate(Timestamp timestamp) {
+        if (timestamp != null) {
+            this.analysisTime = timestamp.toLocalDateTime();
+        }
+    }
+
+    public Timestamp getAnalysisDate() {
+        return analysisTime != null
+                ? Timestamp.valueOf(analysisTime)
+                : null;
     }
 }
