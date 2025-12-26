@@ -18,6 +18,7 @@ import jakarta.persistence.PrePersist;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "users")
 
 public class User {
     

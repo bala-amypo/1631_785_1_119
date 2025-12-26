@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "risk_analysis_results")
 public class RiskAnalysisResult {
 
     @Id
