@@ -1,60 +1,85 @@
-// package com.example.demo.config;
+// package com.example.demo.security;
 
-// import io.swagger.v3.oas.models.OpenAPI;
-// import io.swagger.v3.oas.models.servers.Server;
-// import org.springframework.context.annotation.Bean;
-// import org.springframework.context.annotation.Configuration;
+// import org.springframework.stereotype.Component;
 
-// import java.util.List;
+// @Component
+// public class JwtUtil {
 
-// @Configuration
-// public class SwaggerConfig {
+//     public String generateToken(String email, String role, Long userId) {    
+//         return "dummy.jwt.token";
+//     }
 
-//     @Bean
-//     public OpenAPI customOpenAPI() {
+//     public boolean validateToken(String token) {
+//         return true;
+//     }
 
-//         Server server = new Server()
-//                 .url("https://9156.pro604cr.amypo.ai/")
-//                 .description("Development Server");
+//     public String extractEmail(String token) {
+//         return "test@mail.com";
+//     }
 
-//         return new OpenAPI()
-//                 .servers(List.of(server));
+//     public String extractRole(String token) {
+//         return "USER";
+//     }
+
+//     public Long extractUserId(String token) {
+//         return 1L;
 //     }
 // }
-package com.example.demo.config;
 
-import io.swagger.v3.oas.models.OpenAPI;
-import io.swagger.v3.oas.models.Components;
-import io.swagger.v3.oas.models.security.SecurityRequirement;
-import io.swagger.v3.oas.models.security.SecurityScheme;
-import io.swagger.v3.oas.models.servers.Server;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
-import java.util.List;
+package com.example.demo.security;
 
-@Configuration
-public class SwaggerConfig {
+import io.jsonwebtoken.*;
+import io.jsonwebtoken.security.Keys;
+import org.springframework.stereotype.Component;
 
-    @Bean
-    public OpenAPI customOpenAPI() {
+import java.security.Key;
+import java.util.Date;
 
-        Server server = new Server()
-                .url("https://9156.pro604cr.amypo.ai/")
-                .description("Development Server");
+@Component
+public class JwtUtil {
 
-        return new OpenAPI()
-                .servers(List.of(server))
+    // Secret key for signing JWTs (keep it secure in real apps)
+    private final Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+    private final long expirationMillis = 1000 * 60 * 60 * 24; // 24 hours
 
-                // 🔐 THIS ENABLES THE AUTHORIZE BUTTON
-                .components(new Components()
-                        .addSecuritySchemes("bearerAuth",
-                                new SecurityScheme()
-                                        .type(SecurityScheme.Type.HTTP)
-                                        .scheme("bearer")
-                                        .bearerFormat("JWT")
-                        )
-                )
-                .addSecurityItem(new SecurityRequirement().addList("bearerAuth"));
+    public String generateToken(String email, String role, Long userId) {
+        return Jwts.builder()
+                .setSubject(email)
+                .claim("role", role)
+                .claim("userId", userId)
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + expirationMillis))
+                .signWith(key)
+                .compact();
+    }
+
+    public boolean validateToken(String token) {
+        try {
+            Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
+            return true;
+        } catch (JwtException e) {
+            return false;
+        }
+    }
+
+    public String extractEmail(String token) {
+        return extractAllClaims(token).getSubject();
+    }
+
+    public String extractRole(String token) {
+        return extractAllClaims(token).get("role", String.class);
+    }
+
+    public Long extractUserId(String token) {
+        return extractAllClaims(token).get("userId", Long.class);
+    }
+
+    private Claims extractAllClaims(String token) {
+        return Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
     }
 }
