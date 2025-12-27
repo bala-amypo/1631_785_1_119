@@ -29,7 +29,10 @@ public class UserPortfolio {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String portfolioName;
-    private boolean active=true;
+    @Column(name = "is_active", nullable = false)
+private boolean active = true;
+
+    // private boolean active=true;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
