@@ -47,6 +47,11 @@ public class UserPortfolio {
     @PrePersist
     public void onCreate() {
         LocalDateTime now = LocalDateTime.now();
+        if (!this.active) {
+        this.active = true;   
+    }
+
+
         if (this.createdAt == null) {
             this.createdAt = now;
         }
