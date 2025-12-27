@@ -28,16 +28,18 @@ public class UserPortfolio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
     private String portfolioName;
     private boolean active=true;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+
+
+
+  @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
 
     @OneToMany(mappedBy = "portfolio", cascade = CascadeType.ALL)
     private List<PortfolioHolding> holdings;
