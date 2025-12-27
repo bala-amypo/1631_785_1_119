@@ -17,6 +17,8 @@ import jakarta.validation.constraints.NotNull;
 import java.util.List;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+
 
 @Entity
 @Table(name = "user_portfolios")
