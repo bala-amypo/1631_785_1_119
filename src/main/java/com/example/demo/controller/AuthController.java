@@ -28,5 +28,10 @@ public ResponseEntity<?> loginUser(@RequestBody User user) {
     }
 
     return ResponseEntity.ok("Login successful");
+    //  String token = jwtService.generateToken(foundUser.getEmail());
+
+    // return ResponseEntity.ok()
+    //         .header("Authorization", "Bearer " + token) // 👈 TOKEN HERE
+    //         .body("Login successful");  
 }
 }
