@@ -14,7 +14,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http
-            // ✅ Disable CSRF (required for Swagger + tests)
+            // ✅ Disable CSRF for Swagger + tests
             .csrf(csrf -> csrf.disable())
 
             // ✅ Authorization rules
@@ -27,13 +27,15 @@ public class SecurityConfig {
                 .anyRequest().authenticated()
             )
 
-            // ✅ Allow API testing (Swagger / Postman)
-            .httpBasic(httpBasic -> {});
+            // ❌ REMOVE httpBasic → removes popup
+            // .httpBasic()
+
+            // ❌ REMOVE formLogin → no redirect needed
+            ;
 
         return http.build();
     }
 
-    // ✅ Required by Spring Security, safe for tests
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
