@@ -1,27 +1,60 @@
-package com.example.demo.security;
+// package com.example.demo.config;
 
-import org.springframework.stereotype.Component;
+// import io.swagger.v3.oas.models.OpenAPI;
+// import io.swagger.v3.oas.models.servers.Server;
+// import org.springframework.context.annotation.Bean;
+// import org.springframework.context.annotation.Configuration;
 
-@Component
-public class JwtUtil {
+// import java.util.List;
 
-    public String generateToken(String email, String role, Long userId) {    
-        return "dummy.jwt.token";
-    }
+// @Configuration
+// public class SwaggerConfig {
 
-    public boolean validateToken(String token) {
-        return true;
-    }
+//     @Bean
+//     public OpenAPI customOpenAPI() {
 
-    public String extractEmail(String token) {
-        return "test@mail.com";
-    }
+//         Server server = new Server()
+//                 .url("https://9156.pro604cr.amypo.ai/")
+//                 .description("Development Server");
 
-    public String extractRole(String token) {
-        return "USER";
-    }
+//         return new OpenAPI()
+//                 .servers(List.of(server));
+//     }
+// }
+package com.example.demo.config;
 
-    public Long extractUserId(String token) {
-        return 1L;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.Components;
+import io.swagger.v3.oas.models.security.SecurityRequirement;
+import io.swagger.v3.oas.models.security.SecurityScheme;
+import io.swagger.v3.oas.models.servers.Server;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import java.util.List;
+
+@Configuration
+public class SwaggerConfig {
+
+    @Bean
+    public OpenAPI customOpenAPI() {
+
+        Server server = new Server()
+                .url("https://9156.pro604cr.amypo.ai/")
+                .description("Development Server");
+
+        return new OpenAPI()
+                .servers(List.of(server))
+
+                // 🔐 THIS ENABLES THE AUTHORIZE BUTTON
+                .components(new Components()
+                        .addSecuritySchemes("bearerAuth",
+                                new SecurityScheme()
+                                        .type(SecurityScheme.Type.HTTP)
+                                        .scheme("bearer")
+                                        .bearerFormat("JWT")
+                        )
+                )
+                .addSecurityItem(new SecurityRequirement().addList("bearerAuth"));
     }
 }
