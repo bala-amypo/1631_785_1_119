@@ -34,7 +34,7 @@ public class UserPortfolio {
     private User user;
 
     private String portfolioName;
-    private boolean active;
+    private boolean active=true;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
@@ -47,9 +47,6 @@ public class UserPortfolio {
     @PrePersist
     public void onCreate() {
         LocalDateTime now = LocalDateTime.now();
-        if (!this.active) {
-            this.active = true;   
-    }
 
 
         if (this.createdAt == null) {
