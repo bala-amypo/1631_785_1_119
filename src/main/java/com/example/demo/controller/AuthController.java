@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.security.JwtUtil;
 import com.example.demo.model.User;
 import com.example.demo.service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -8,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/auth")
 public class AuthController {
 
-    // private final UserService userService;
+    private final UserService userService;
 
     // public AuthController(UserService userService) {
     //     this.userService = userService;
