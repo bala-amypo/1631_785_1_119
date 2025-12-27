@@ -34,12 +34,9 @@ public class UserPortfolio {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-
-
   @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-
 
     @OneToMany(mappedBy = "portfolio", cascade = CascadeType.ALL)
     private List<PortfolioHolding> holdings;
