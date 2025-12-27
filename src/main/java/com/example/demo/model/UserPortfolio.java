@@ -32,7 +32,7 @@ public class UserPortfolio {
     private Long id;
     private String portfolioName;
     @Column(name = "is_active", nullable = false)
-private boolean active = true;
+    private boolean active = true;
 
     // private boolean active=true;
 
