@@ -56,55 +56,62 @@
 //     public PasswordEncoder passwordEncoder() {
 //         return new BCryptPasswordEncoder();
 //     }
-// }
-package com.example.demo.security;
+// }package com.example.demo.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
-            // ✅ Disable CSRF (Swagger + tests)
+            // ✅ Disable CSRF (required for Swagger & tests)
             .csrf(csrf -> csrf.disable())
 
             // ✅ Authorization rules
             .authorizeHttpRequests(auth -> auth
-                // Swagger needs authentication
                 .requestMatchers(
                     "/swagger-ui/**",
                     "/v3/api-docs/**"
                 ).authenticated()
-
-                // APIs allowed (tests expect no blocking)
-                .anyRequest().permitAll()
+                .anyRequest().authenticated()
             )
 
-            // ✅ ENABLE LOGIN PAGE
+            // ✅ FORM LOGIN (this is what shows the login page)
             .formLogin(form -> form
-                .loginPage("/login")               // default Spring login
-                .defaultSuccessUrl(
-                    "/swagger-ui/index.html",
-                    true
-                )
+                .defaultSuccessUrl("/swagger-ui/index.html", true)
                 .permitAll()
             )
 
-            // ❌ DO NOT enable httpBasic (popup loop)
-            ;
+            // ✅ Keep HTTP Basic (safe for tests)
+            .httpBasic();
 
         return http.build();
     }
 
-    // ✅ Required, safe for tests
+    // ✅ In-memory users (THIS is why login page works)
+    @Bean
+    public InMemoryUserDetailsManager userDetailsService(PasswordEncoder passwordEncoder) {
+
+        UserDetails admin = User.builder()
+            .username("mitra")
+            .password(passwordEncoder.encode("0226"))
+            .roles("ADMIN", "MONITOR", "QUALITY_AUDITOR")
+            .build();
+
+        return new InMemoryUserDetailsManager(admin);
+    }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
