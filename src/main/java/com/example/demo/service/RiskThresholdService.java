@@ -10,7 +10,6 @@
 //     List<RiskThreshold>getAllThresholds();
     
 // }
-
 package com.example.demo.service;
 
 import java.util.List;
@@ -22,7 +21,7 @@ public interface RiskThresholdService {
 
     RiskThreshold updateThreshold(Long id, RiskThreshold threshold);
 
-    RiskThreshold getActiveThreshold();
+    List<RiskThreshold> getActiveThreshold();
 
     RiskThreshold getThresholdById(Long id);
 
