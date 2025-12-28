@@ -48,12 +48,15 @@
 //         return thresholdRepository.findAll();
 //     }
 // }
-package com.example.demo.service.Impl; 
-import org.springframework.stereotype.Service; 
-import java.util.List; 
-import com.example.demo.model.RiskThreshold; 
-import com.example.demo.service.RiskThresholdService; 
-import com.example.demo.repository.RiskThresholdRepository; 
+
+package com.example.demo.service.Impl;
+
+import org.springframework.stereotype.Service;
+import java.util.List;
+
+import com.example.demo.model.RiskThreshold;
+import com.example.demo.service.RiskThresholdService;
+import com.example.demo.repository.RiskThresholdRepository;
 import com.example.demo.exception.ResourceNotFoundException;
 
 @Service
@@ -73,7 +76,8 @@ public class RiskThresholdServiceImpl implements RiskThresholdService {
     @Override
     public RiskThreshold updateThreshold(Long id, RiskThreshold threshold) {
         RiskThreshold existing = thresholdRepository.findById(id)
-            .orElseThrow(() -> new ResourceNotFoundException("Threshold not found"));
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Threshold not found"));
 
         existing.setThresholdName(threshold.getThresholdName());
         existing.setMaxSingleStockPercentage(threshold.getMaxSingleStockPercentage());
@@ -83,19 +87,16 @@ public class RiskThresholdServiceImpl implements RiskThresholdService {
         return thresholdRepository.save(existing);
     }
 
-    // ✅ Minimal fix: return a single object
     @Override
-    public RiskThreshold getActiveThreshold() {
-        return thresholdRepository.findByActiveTrue()
-                .stream()
-                .findFirst()
-                .orElseThrow(() -> new ResourceNotFoundException("Active threshold not found"));
+    public List<RiskThreshold> getActiveThreshold() {
+        return thresholdRepository.findByActiveTrue();
     }
 
     @Override
     public RiskThreshold getThresholdById(Long id) {
         return thresholdRepository.findById(id)
-            .orElseThrow(() -> new ResourceNotFoundException("Threshold not found"));
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Threshold not found"));
     }
 
     @Override
