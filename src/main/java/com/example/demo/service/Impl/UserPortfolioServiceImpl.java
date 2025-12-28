@@ -27,7 +27,7 @@ public class UserPortfolioServiceImpl implements UserPortfolioService {
             .orElseThrow(() -> new ResourceNotFoundException("Portfolio not found"));
 
         existing.setPortfolioName(portfolio.getPortfolioName());
-        existing.setActive(portfolio.getActive()); // ✅ FIXED
+        existing.setActive(portfolio.getActive()); 
         existing.setUser(portfolio.getUser());
 
         return portFolioRepository.save(existing);

@@ -31,12 +31,12 @@ public class RiskAnalysisServiceImpl implements RiskAnalysisService {
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Portfolio not found"));
 
-        // ✅ Backend-controlled analysis
+     
         RiskAnalysisResult analysis = new RiskAnalysisResult();
         analysis.setPortfolio(portfolio);
         analysis.setAnalysisTime(LocalDateTime.now());
 
-        // ✅ Default / safe values (won’t break tests)
+       
         analysis.setHighestStockPercentage(0.0);
         analysis.setHighestSectorPercentage(0.0);
         analysis.setHighRisk(false);

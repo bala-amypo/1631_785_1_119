@@ -17,7 +17,6 @@ public class PortfolioHoldingServiceImpl implements PortfolioHoldingService {
     private final UserPortfolioRepository portfolioRepository;
     private final StockRepository stockRepository;
 
-    // ✅ REQUIRED constructor order (do NOT change)
     public PortfolioHoldingServiceImpl(
             PortfolioHoldingRepository holdingRepository,
             UserPortfolioRepository portfolioRepository,
@@ -31,7 +30,7 @@ public class PortfolioHoldingServiceImpl implements PortfolioHoldingService {
     @Override
     public PortfolioHolding createHolding(PortfolioHolding holding) {
 
-        // ✅ REQUIRED validation
+        
         if (holding.getQuantity() == null || holding.getQuantity() <= 0) {
             throw new IllegalArgumentException("Quantity must be > 0");
         }

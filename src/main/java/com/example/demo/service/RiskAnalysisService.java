@@ -5,7 +5,7 @@ import com.example.demo.model.RiskAnalysisResult;
 
 public interface RiskAnalysisService {
 
-    // ✅ FIXED: accept portfolioId, not entity
+    
     RiskAnalysisResult analyzePortfolio(Long portfolioId);
 
     RiskAnalysisResult getAnalysisById(Long id);
