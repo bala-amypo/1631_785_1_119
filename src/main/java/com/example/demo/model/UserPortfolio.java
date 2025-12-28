@@ -32,7 +32,7 @@ public class UserPortfolio {
     private Long id;
     private String portfolioName;
     @Column(name = "is_active", nullable = false)
-    private boolean active = true;
+    private Boolean active;
 
     // private boolean active=true;
 
@@ -49,19 +49,23 @@ public class UserPortfolio {
     @OneToMany(mappedBy = "portfolio", cascade = CascadeType.ALL)
     private List<RiskAnalysisResult> riskAnalyses;
     @PrePersist
-    public void onCreate() {
-        LocalDateTime now = LocalDateTime.now();
+public void onCreate() {
+    LocalDateTime now = LocalDateTime.now();
 
-
-        if (this.createdAt == null) {
-            this.createdAt = now;
-        }
-        this.updatedAt = now;
+    if (this.createdAt == null) {
+        this.createdAt = now;
     }
+    this.updatedAt = now;
+
+    // ✅ ADD THIS (VERY IMPORTANT)
+    if (this.active == null) {
+        this.active = true;
+    }
+}
 
     @PreUpdate
     public void onUpdate() {
         this.updatedAt = LocalDateTime.now();
     }
-   
+
 }
