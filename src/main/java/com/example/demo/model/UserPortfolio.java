@@ -20,6 +20,8 @@ import lombok.AllArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "user_portfolios")
 @Data
@@ -33,7 +35,6 @@ public class UserPortfolio {
 
     private String portfolioName;
 
-    // ✅ MUST be Boolean (not boolean)
     @Column(name = "is_active", nullable = false)
     private Boolean active;
 
@@ -45,9 +46,11 @@ public class UserPortfolio {
     private User user;
 
     @OneToMany(mappedBy = "portfolio", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<PortfolioHolding> holdings;
 
     @OneToMany(mappedBy = "portfolio", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<RiskAnalysisResult> riskAnalyses;
 
     @PrePersist
@@ -59,7 +62,6 @@ public class UserPortfolio {
         }
         this.updatedAt = now;
 
-        // ✅ Prevent DB error
         if (this.active == null) {
             this.active = true;
         }

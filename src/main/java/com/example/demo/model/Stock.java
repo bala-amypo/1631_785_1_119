@@ -1,4 +1,5 @@
 package com.example.demo.model;
+
 import jakarta.persistence.Entity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,25 +9,35 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Table;
+
 import java.util.List;
+
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.CascadeType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "stocks")
+public class Stock {
 
-public class Stock{
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "ticker",unique = true)
+
+    @Column(name = "ticker", unique = true)
     private String ticker;
+
     private String companyName;
     private String sector;
+
     private boolean isActive = true;
+
+    // ✅ Prevent circular reference in Swagger / JSON
     @OneToMany(mappedBy = "stock", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<PortfolioHolding> holdings;
 }

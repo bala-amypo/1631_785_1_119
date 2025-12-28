@@ -17,6 +17,8 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Getter
 @Setter
@@ -36,6 +38,7 @@ public class PortfolioHolding {
 
     @ManyToOne
     @JoinColumn(name = "portfolio_id")
+    @JsonBackReference
     private UserPortfolio portfolio;
 
     @ManyToOne

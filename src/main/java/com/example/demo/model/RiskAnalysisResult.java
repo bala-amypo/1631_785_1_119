@@ -7,13 +7,16 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import jakarta.persistence.Table;
+
 import java.time.LocalDateTime;
 import java.sql.Timestamp;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -33,6 +36,7 @@ public class RiskAnalysisResult {
 
     @ManyToOne
     @JoinColumn(name = "portfolio_id")
+    @JsonBackReference
     private UserPortfolio portfolio;
 
     @PrePersist
