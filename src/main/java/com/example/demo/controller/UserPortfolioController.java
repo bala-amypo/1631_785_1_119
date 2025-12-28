@@ -7,6 +7,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.example.demo.model.UserPortfolio;
 import com.example.demo.service.UserPortfolioService;
+
 @RestController
 @RequestMapping("/api/portfolios")
 public class UserPortfolioController {
@@ -27,6 +28,14 @@ public class UserPortfolioController {
     @GetMapping("/{id}")
     public ResponseEntity<UserPortfolio> getPortfolio(@PathVariable Long id) {
         return ResponseEntity.ok(portfolioService.getPortfolioById(id));
+    }
+
+    // ✅ New endpoint to get portfolios by user
+    @PreAuthorize("hasAnyRole('ADMIN','MONITOR','QUALITY_AUDITOR')")
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<UserPortfolio>> getPortfoliosByUser(@PathVariable Long userId) {
+        List<UserPortfolio> portfolios = portfolioService.getPortfoliosByUser(userId);
+        return ResponseEntity.ok(portfolios);
     }
 
     @PreAuthorize("hasAnyRole('ADMIN','MONITOR')")
