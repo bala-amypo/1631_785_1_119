@@ -18,7 +18,7 @@ public class RiskAnalysisController {
         this.analysisService = analysisService;
     }
 
-    @PreAuthorize("hasRole('QUALITY_AUDITOR')")
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/{portfolioId}")
     public ResponseEntity<RiskAnalysisResult> analyzePortfolio(
             @PathVariable Long portfolioId) {
