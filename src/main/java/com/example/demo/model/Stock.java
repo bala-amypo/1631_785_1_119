@@ -36,7 +36,6 @@ public class Stock {
 
     private boolean isActive = true;
 
-    // ✅ Prevent circular reference in Swagger / JSON
     @OneToMany(mappedBy = "stock", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<PortfolioHolding> holdings;

@@ -23,7 +23,7 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<User> registerUser(@RequestBody User user) {
-        // Keep password as-is to avoid breaking tests
+        
         return ResponseEntity.ok(userService.register(user));
     }
 
@@ -41,7 +41,6 @@ public class AuthController {
                 foundUser.getId()
         );
 
-        // Return JWT in header and body
         return ResponseEntity.ok()
                 .header("Authorization", "Bearer " + token)
                 .body(Map.of(

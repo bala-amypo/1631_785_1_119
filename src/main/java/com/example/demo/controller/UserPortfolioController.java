@@ -30,7 +30,6 @@ public class UserPortfolioController {
         return ResponseEntity.ok(portfolioService.getPortfolioById(id));
     }
 
-    // ✅ New endpoint to get portfolios by user
     @PreAuthorize("hasAnyRole('ADMIN','MONITOR','QUALITY_AUDITOR')")
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<UserPortfolio>> getPortfoliosByUser(@PathVariable Long userId) {

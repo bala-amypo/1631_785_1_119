@@ -43,13 +43,11 @@ public class SecurityConfig {
             )
             .httpBasic();
 
-        // ✅ THIS LINE IS CRITICAL
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
 
-    // Swagger UI login ONLY
     @Bean
     public InMemoryUserDetailsManager userDetailsService() {
 
@@ -64,7 +62,7 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        // SAFE for Swagger + tests
+       
         return NoOpPasswordEncoder.getInstance();
     }
 

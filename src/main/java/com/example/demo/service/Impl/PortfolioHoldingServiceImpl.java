@@ -45,7 +45,7 @@ public class PortfolioHoldingServiceImpl implements PortfolioHoldingService {
         PortfolioHolding existing = holdingRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Not found"));
 
-        // ✅ REQUIRED validation
+        
         if (holding.getQuantity() == null || holding.getQuantity() <= 0) {
             throw new IllegalArgumentException("Quantity must be > 0");
         }
