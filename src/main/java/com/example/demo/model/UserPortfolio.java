@@ -1,24 +1,24 @@
 package com.example.demo.model;
 
 import jakarta.persistence.Entity;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.Table;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.Table;
-import java.time.LocalDateTime;
+import jakarta.persistence.Column;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
-import jakarta.validation.constraints.NotNull;
-import java.util.List;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "user_portfolios")
@@ -30,16 +30,17 @@ public class UserPortfolio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String portfolioName;
+
+    // ✅ MUST be Boolean (not boolean)
     @Column(name = "is_active", nullable = false)
     private Boolean active;
-
-    // private boolean active=true;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-  @ManyToOne
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -48,24 +49,24 @@ public class UserPortfolio {
 
     @OneToMany(mappedBy = "portfolio", cascade = CascadeType.ALL)
     private List<RiskAnalysisResult> riskAnalyses;
+
     @PrePersist
-public void onCreate() {
-    LocalDateTime now = LocalDateTime.now();
+    public void onCreate() {
+        LocalDateTime now = LocalDateTime.now();
 
-    if (this.createdAt == null) {
-        this.createdAt = now;
-    }
-    this.updatedAt = now;
+        if (this.createdAt == null) {
+            this.createdAt = now;
+        }
+        this.updatedAt = now;
 
-    // ✅ ADD THIS (VERY IMPORTANT)
-    if (this.active == null) {
-        this.active = true;
+        // ✅ Prevent DB error
+        if (this.active == null) {
+            this.active = true;
+        }
     }
-}
 
     @PreUpdate
     public void onUpdate() {
         this.updatedAt = LocalDateTime.now();
     }
-
 }
