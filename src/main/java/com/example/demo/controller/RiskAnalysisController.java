@@ -1,9 +1,9 @@
 package com.example.demo.controller;
 
 import java.util.List;
-
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.example.demo.model.RiskAnalysisResult;
 import com.example.demo.service.RiskAnalysisService;
@@ -18,34 +18,23 @@ public class RiskAnalysisController {
         this.analysisService = analysisService;
     }
 
-    // ✅ FIXED: NO RequestBody
+    @PreAuthorize("hasRole('QUALITY_AUDITOR')")
     @PostMapping("/{portfolioId}")
     public ResponseEntity<RiskAnalysisResult> analyzePortfolio(
             @PathVariable Long portfolioId) {
-
-        RiskAnalysisResult result =
-                analysisService.analyzePortfolio(portfolioId);
-
-        return ResponseEntity.ok(result);
+        return ResponseEntity.ok(analysisService.analyzePortfolio(portfolioId));
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN','MONITOR','QUALITY_AUDITOR')")
     @GetMapping("/portfolio/{portfolioId}")
     public ResponseEntity<List<RiskAnalysisResult>> getAnalysesForPortfolio(
             @PathVariable Long portfolioId) {
-
-        List<RiskAnalysisResult> results =
-                analysisService.getAnalysesForPortfolio(portfolioId);
-
-        return ResponseEntity.ok(results);
+        return ResponseEntity.ok(analysisService.getAnalysesForPortfolio(portfolioId));
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN','MONITOR','QUALITY_AUDITOR')")
     @GetMapping("/{id}")
-    public ResponseEntity<RiskAnalysisResult> getAnalysisById(
-            @PathVariable Long id) {
-
-        RiskAnalysisResult result =
-                analysisService.getAnalysisById(id);
-
-        return ResponseEntity.ok(result);
+    public ResponseEntity<RiskAnalysisResult> getAnalysisById(@PathVariable Long id) {
+        return ResponseEntity.ok(analysisService.getAnalysisById(id));
     }
 }
