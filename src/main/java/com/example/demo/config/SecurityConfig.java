@@ -73,31 +73,38 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http
-            // ✅ Disable CSRF (required for Swagger + automated tests)
+            // ✅ Disable CSRF (Swagger + tests)
             .csrf(csrf -> csrf.disable())
 
             // ✅ Authorization rules
             .authorizeHttpRequests(auth -> auth
-                // Swagger & auth must be public
+                // Swagger needs authentication
                 .requestMatchers(
                     "/swagger-ui/**",
-                    "/v3/api-docs/**",
-                    "/auth/**",
-                    "/status"
-                ).permitAll()
+                    "/v3/api-docs/**"
+                ).authenticated()
 
-                // All APIs require auth (JWT later, but not enforced now)
+                // APIs allowed (tests expect no blocking)
                 .anyRequest().permitAll()
             )
 
-            // ❌ DO NOT use formLogin → causes redirect loop
-            // ❌ DO NOT force httpBasic → causes popup loop
+            // ✅ ENABLE LOGIN PAGE
+            .formLogin(form -> form
+                .loginPage("/login")               // default Spring login
+                .defaultSuccessUrl(
+                    "/swagger-ui/index.html",
+                    true
+                )
+                .permitAll()
+            )
+
+            // ❌ DO NOT enable httpBasic (popup loop)
             ;
 
         return http.build();
     }
 
-    // ✅ Required bean, safe for tests
+    // ✅ Required, safe for tests
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
