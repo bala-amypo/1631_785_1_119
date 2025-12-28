@@ -1,3 +1,53 @@
+// package com.example.demo.service.Impl; 
+// import org.springframework.stereotype.Service; 
+// import java.util.List; 
+// import com.example.demo.model.RiskThreshold; 
+// import com.example.demo.service.RiskThresholdService; 
+// import com.example.demo.repository.RiskThresholdRepository; 
+// import com.example.demo.exception.ResourceNotFoundException;
+// @Service
+// public class RiskThresholdServiceImpl implements RiskThresholdService {
+
+//     private final RiskThresholdRepository thresholdRepository;
+
+//     public RiskThresholdServiceImpl(RiskThresholdRepository thresholdRepository) {
+//         this.thresholdRepository = thresholdRepository;
+//     }
+
+//     @Override
+//     public RiskThreshold createThreshold(RiskThreshold threshold) {
+//         return thresholdRepository.save(threshold);
+//     }
+
+//     @Override
+//     public RiskThreshold updateThreshold(Long id, RiskThreshold threshold) {
+//         RiskThreshold existing = thresholdRepository.findById(id)
+//             .orElseThrow(() -> new ResourceNotFoundException("Threshold not found"));
+
+//         existing.setThresholdName(threshold.getThresholdName());
+//         existing.setMaxSingleStockPercentage(threshold.getMaxSingleStockPercentage());
+//         existing.setMaxSectorPercentage(threshold.getMaxSectorPercentage());
+//         existing.setActive(threshold.isActive());
+
+//         return thresholdRepository.save(existing);
+//     }
+
+//     @Override
+//     public List<RiskThreshold> getActiveThreshold() {
+//         return thresholdRepository.findByActiveTrue();
+//     }
+
+//     @Override
+//     public RiskThreshold getThresholdById(Long id) {
+//         return thresholdRepository.findById(id)
+//             .orElseThrow(() -> new ResourceNotFoundException("Threshold not found"));
+//     }
+
+//     @Override
+//     public List<RiskThreshold> getAllThresholds() {
+//         return thresholdRepository.findAll();
+//     }
+// }
 package com.example.demo.service.Impl; 
 import org.springframework.stereotype.Service; 
 import java.util.List; 
@@ -5,6 +55,7 @@ import com.example.demo.model.RiskThreshold;
 import com.example.demo.service.RiskThresholdService; 
 import com.example.demo.repository.RiskThresholdRepository; 
 import com.example.demo.exception.ResourceNotFoundException;
+
 @Service
 public class RiskThresholdServiceImpl implements RiskThresholdService {
 
@@ -32,9 +83,13 @@ public class RiskThresholdServiceImpl implements RiskThresholdService {
         return thresholdRepository.save(existing);
     }
 
+    // ✅ Minimal fix: return a single object
     @Override
-    public List<RiskThreshold> getActiveThreshold() {
-        return thresholdRepository.findByActiveTrue();
+    public RiskThreshold getActiveThreshold() {
+        return thresholdRepository.findByActiveTrue()
+                .stream()
+                .findFirst()
+                .orElseThrow(() -> new ResourceNotFoundException("Active threshold not found"));
     }
 
     @Override
