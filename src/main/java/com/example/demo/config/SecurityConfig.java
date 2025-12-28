@@ -67,7 +67,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-
 @Configuration
 public class SecurityConfig {
 
@@ -75,41 +74,37 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
-            // ✅ Disable CSRF (required for Swagger & tests)
             .csrf(csrf -> csrf.disable())
 
-            // ✅ Authorization rules
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(
+                    "/auth/**",
                     "/swagger-ui/**",
                     "/v3/api-docs/**"
-                ).authenticated()
+                ).permitAll()
                 .anyRequest().authenticated()
             )
 
-            // ✅ FORM LOGIN (this is what shows the login page)
             .formLogin(form -> form
                 .defaultSuccessUrl("/swagger-ui/index.html", true)
                 .permitAll()
             )
 
-            // ✅ Keep HTTP Basic (safe for tests)
             .httpBasic();
 
         return http.build();
     }
 
-    // ✅ In-memory users (THIS is why login page works)
     @Bean
     public InMemoryUserDetailsManager userDetailsService(PasswordEncoder passwordEncoder) {
 
-        UserDetails admin = User.builder()
+        UserDetails user = User.builder()
             .username("mitra")
             .password(passwordEncoder.encode("0226"))
             .roles("ADMIN", "MONITOR", "QUALITY_AUDITOR")
             .build();
 
-        return new InMemoryUserDetailsManager(admin);
+        return new InMemoryUserDetailsManager(user);
     }
 
     @Bean
