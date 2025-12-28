@@ -7,7 +7,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.example.demo.model.UserPortfolio;
 import com.example.demo.service.UserPortfolioService;
-
 @RestController
 @RequestMapping("/api/portfolios")
 public class UserPortfolioController {
@@ -30,12 +29,6 @@ public class UserPortfolioController {
         return ResponseEntity.ok(portfolioService.getPortfolioById(id));
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN','MONITOR','QUALITY_AUDITOR')")
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<List<UserPortfolio>> getPortfoliosByUser(@PathVariable Long userId) {
-        return ResponseEntity.ok(portfolioService.getPortfoliosByUser(userId));
-    }
-
     @PreAuthorize("hasAnyRole('ADMIN','MONITOR')")
     @PutMapping("/{id}")
     public ResponseEntity<UserPortfolio> updatePortfolio(
@@ -44,7 +37,7 @@ public class UserPortfolioController {
         return ResponseEntity.ok(portfolioService.updatePortfolio(id, portfolio));
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN','MONITOR')")
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}/deactivate")
     public ResponseEntity<Void> deactivatePortfolio(@PathVariable Long id) {
         portfolioService.deactivatePortfolio(id);

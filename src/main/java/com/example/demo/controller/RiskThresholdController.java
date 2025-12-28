@@ -7,7 +7,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.example.demo.model.RiskThreshold;
 import com.example.demo.service.RiskThresholdService;
-
 @RestController
 @RequestMapping("/api/risk-thresholds")
 public class RiskThresholdController {

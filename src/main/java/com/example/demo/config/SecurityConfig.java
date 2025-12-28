@@ -12,7 +12,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-@EnableMethodSecurity   // ✅ REQUIRED for @PreAuthorize
+@EnableMethodSecurity   // REQUIRED for @PreAuthorize
 public class SecurityConfig {
 
     @Bean
@@ -40,13 +40,25 @@ public class SecurityConfig {
     @Bean
     public InMemoryUserDetailsManager userDetailsService(PasswordEncoder passwordEncoder) {
 
-        UserDetails user = User.builder()
-            .username("mitra")
-            .password(passwordEncoder.encode("0226"))
-            .roles("ADMIN", "MONITOR", "QUALITY_AUDITOR")
+        UserDetails admin = User.builder()
+            .username("admin")
+            .password(passwordEncoder.encode("admin123"))
+            .roles("ADMIN")
             .build();
 
-        return new InMemoryUserDetailsManager(user);
+        UserDetails monitor = User.builder()
+            .username("monitor")
+            .password(passwordEncoder.encode("monitor123"))
+            .roles("MONITOR")
+            .build();
+
+        UserDetails auditor = User.builder()
+            .username("auditor")
+            .password(passwordEncoder.encode("auditor123"))
+            .roles("QUALITY_AUDITOR")
+            .build();
+
+        return new InMemoryUserDetailsManager(admin, monitor, auditor);
     }
 
     @Bean

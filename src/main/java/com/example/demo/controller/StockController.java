@@ -7,7 +7,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.example.demo.model.Stock;
 import com.example.demo.service.StockService;
-
 @RestController
 @RequestMapping("/api/stocks")
 public class StockController {
